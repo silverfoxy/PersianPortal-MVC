@@ -1,0 +1,62 @@
+﻿body {
+    background-image: none;
+}
+
+.socialnet-badge {
+    margin-top: 5px;
+}
+
+.BorderedList {
+    padding-right: 0;
+}
+
+.BorderedList li {
+    list-style: none;
+    display: block;
+    margin: 5px 0 15px 0;
+    border-radius: 2px;
+}
+
+.BorderedList i {
+    padding-left: 10px;
+}
+
+.BorderedList .online i {
+    color: #26a126;
+}
+
+.BorderedList .away i {
+    color: #ffd800;
+}
+
+.BorderedList .offline i {
+    color: #808080;
+}
+
+.BorderedList li:hover {
+    transition: all linear 0.5s;
+    background-color: rgba(50, 50, 50, 0.1);
+}
+
+.BorderedList li a {
+    text-decoration: none;
+    display: block;
+    padding: 5px 15px 0 0;
+}
+
+.h50{
+    height: 50px;
+}
+
+.ad-box {
+    padding-top: 0;
+    padding: 0 10px 0 10px;
+}
+
+.comment-time {
+    font-size: 10pt;
+}
+
+textarea {
+    resize: none;
+}
