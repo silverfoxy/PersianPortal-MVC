@@ -25,7 +25,7 @@ namespace PersianPortal.Models
         public string AuthorId { get; set; }
 
         [ForeignKey("AuthorId")]
-        public ApplicationUser Author { get; set; }
+        public User Author { get; set; }
 
         [DataType(DataType.Date), Display(Name = "تاریخ چاپ")]
         public DateTime PublishDate { get; set; }

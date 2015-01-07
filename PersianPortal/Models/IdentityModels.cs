@@ -6,7 +6,7 @@ using System.Data.Entity;
 namespace PersianPortal.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
-    public class ApplicationUser : IdentityUser
+    public class User : IdentityUser
     {
         [Required]
         [MaxLength(50, ErrorMessage = "حداکثر طول مجاز برای نام 50 کاراکتر است."), Display(Name = "نام")]
@@ -22,7 +22,7 @@ namespace PersianPortal.Models
         public string EmailAddress { get; set; }
     }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<User>
     {
         public DbSet<Article> Article { get; set; }
         public DbSet<Book> Book { get; set; }
@@ -32,11 +32,15 @@ namespace PersianPortal.Models
         public DbSet<Poem> Poem { get; set; }
         public DbSet<PoemType> PoemType { get; set; }
 
+        public DbSet<Content> Content { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection")
         {
         }
 
-        public System.Data.Entity.DbSet<PersianPortal.Models.ApplicationUser> IdentityUsers { get; set; }
+        public System.Data.Entity.DbSet<PersianPortal.Models.User> IdentityUsers { get; set; }
+
+        //public System.Data.Entity.DbSet<PersianPortal.Models.User> IdentityUsers { get; set; }
     }
 }

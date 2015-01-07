@@ -39,7 +39,7 @@ namespace PersianPortal.Controllers
         // GET: Books/Create
         public ActionResult Create()
         {
-            ViewBag.AuthorId = new SelectList(db.IdentityUsers, "Id", "UserName");
+            ViewBag.AuthorId = new SelectList(db.Users, "Id", "UserName");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace PersianPortal.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AuthorId = new SelectList(db.IdentityUsers, "Id", "UserName", book.AuthorId);
+            ViewBag.AuthorId = new SelectList(db.Users, "Id", "UserName", book.AuthorId);
             return View(book);
         }
 
@@ -73,7 +73,7 @@ namespace PersianPortal.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.AuthorId = new SelectList(db.IdentityUsers, "Id", "UserName", book.AuthorId);
+            ViewBag.AuthorId = new SelectList(db.Users, "Id", "UserName", book.AuthorId);
             return View(book);
         }
 
@@ -90,7 +90,7 @@ namespace PersianPortal.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.AuthorId = new SelectList(db.IdentityUsers, "Id", "UserName", book.AuthorId);
+            ViewBag.AuthorId = new SelectList(db.Users, "Id", "UserName", book.AuthorId);
             return View(book);
         }
 

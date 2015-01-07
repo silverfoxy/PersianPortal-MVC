@@ -7,7 +7,7 @@ using System.Web;
 
 namespace PersianPortal.Models
 {
-    public abstract class Content
+    public class Content
     {
         [Key]
         public int Id { get; set; }
@@ -25,6 +25,6 @@ namespace PersianPortal.Models
         public string AuthorId { get; set; }
 
         [ForeignKey("AuthorId")]
-        public ApplicationUser Author { get; set; }
+        public User Author { get; set; }
     }
 }
