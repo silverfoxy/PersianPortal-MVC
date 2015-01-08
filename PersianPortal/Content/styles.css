@@ -275,12 +275,13 @@ body {
     background-position: top;*/
 }
 
-h1,h2,h3{
+h1,h2,h3,h4,a,p{
     font-family: "Dast Nevis", "B Tabassom","B mitra", "B nazanin", "Segoe Print","Buxton Sketch", "Arial";
 }
 
 .navbar {
     font-size: 14pt;
+    background-color:#eeeeee;
 }
 
  #searchInput {
@@ -316,7 +317,7 @@ background-color:black;
 }
 
 .navbar-nav {
-    float: left;
+    float: left !important;
 }
 
 body {
@@ -525,6 +526,7 @@ body {
     height: 45px;
     margin-bottom: 40px;
     padding: 0;
+    margin-top:40px
 }
 
 .news-read-more {
@@ -539,6 +541,7 @@ body {
     width:30%;
     left: 0%;
     text-align: right;
+    margin-top:40px;
 }
 
 .news-heading {
@@ -729,6 +732,50 @@ tr:nth-child(3)
 
 .openIcon{
    width:80px; 
+}
+
+
+.btn-search {
+    height: 38px;
+    font-family: inherit;
+    font-size: large;
+     color: #ffffff;
+  background-color: #474949;
+  border-color: #474949;
+}
+
+
+.btn-default {
+  color: #ffffff;
+  background-color: #474949;
+  border-color: #474949;
+}
+
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default.active {
+  background-color: #3a3c3c;
+  border-color: #2e2f2f;
+}
+
+.btn-default.disabled,
+.btn-default[disabled],
+fieldset[disabled] .btn-default,
+.btn-default.disabled:hover,
+.btn-default[disabled]:hover,
+fieldset[disabled] .btn-default:hover,
+.btn-default.disabled:focus,
+.btn-default[disabled]:focus,
+fieldset[disabled] .btn-default:focus,
+.btn-default.disabled:active,
+.btn-default[disabled]:active,
+fieldset[disabled] .btn-default:active,
+.btn-default.disabled.active,
+.btn-default[disabled].active,
+fieldset[disabled] .btn-default.active {
+  background-color: #474949;
+  border-color: #474949;
 }
 
 
