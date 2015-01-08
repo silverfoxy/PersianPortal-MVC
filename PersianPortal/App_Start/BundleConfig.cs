@@ -35,12 +35,11 @@ namespace PersianPortal
                       "~/Content/styles.css",
                       "~/Content/social-net-style.css",
                       "~/Content/font-awesome.min.css",
-                      //"~/Content/bootstrap-glyphicons.css",
-                      "~/Content/bootstrap-rtl.min.css",
+                      "~/Content/bootstrap-glyphicons.css",
+                //"~/Content/bootstrap-rtl.min.css",
                       "~/Content/bootstrap-rtl.css",
-                      "~/Content/bootstrap-theme.css",
-                      "~/Content/bootstrap-datepicker.min.css",
-                      "~/Content/persianDatepicker-default.css"));
+                //"~/Content/bootstrap-theme.css",
+                      "~/Content/bootstrap-datepicker.min.css"));
 
         }
     }
