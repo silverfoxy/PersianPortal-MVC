@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 
 namespace PersianPortal.Models
@@ -11,12 +12,16 @@ namespace PersianPortal.Models
         [Required]
         [MaxLength(50, ErrorMessage = "حداکثر طول مجاز برای نام 50 کاراکتر است."), Display(Name = "نام")]
         public string Name { get; set; }
+
         [Required]
         [MaxLength(100, ErrorMessage = "حداکثر طول مجاز برای نام خانوادگی 200 کاراکتر است."), Display(Name = "نام خانوادگی")]
         public string FamilyName { get; set; }
+
         [Required]
+        [Column(TypeName = "datetime2")]
         [DataType(DataType.Date), Display(Name = "تاریخ تولد")]
         public DateTime DateOfBirth { get; set; }
+
         [Required]
         [EmailAddress, Display(Name = "آدرس ایمیل")]
         public string EmailAddress { get; set; }
@@ -39,8 +44,5 @@ namespace PersianPortal.Models
         {
         }
 
-        public System.Data.Entity.DbSet<PersianPortal.Models.User> IdentityUsers { get; set; }
-
-        //public System.Data.Entity.DbSet<PersianPortal.Models.User> IdentityUsers { get; set; }
     }
 }

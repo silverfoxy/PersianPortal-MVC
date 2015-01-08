@@ -1,5 +1,8 @@
 namespace PersianPortal.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using PersianPortal.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -16,16 +19,21 @@ namespace PersianPortal.Migrations
         {
             //  This method will be called after migrating to the latest version.
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            var manager = new UserManager<User>(
+                new UserStore<User>(
+                    new ApplicationDbContext()));
+                        for (int i = 0; i < 4; i++)
+                        {
+                            var user = new User()
+                            {
+                                UserName = string.Format("User{0}", i.ToString()),
+                                Name = "User",
+                                FamilyName = i.ToString(),
+                                DateOfBirth = DateTime.Now,
+                                EmailAddress = string.Format("User{0}@gmail.com", i.ToString())
+                            };
+                            manager.Create(user, string.Format("Password{0}", i.ToString()));
+                        }
         }
     }
 }

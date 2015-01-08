@@ -78,7 +78,14 @@ namespace PersianPortal.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User() { UserName = model.UserName };
+                var user = new User()
+                {
+                    UserName = model.UserName,
+                    Name = model.Name,
+                    FamilyName = model.FamilyName,
+                    DateOfBirth = model.DateOfBirth,
+                    EmailAddress = model.EmailAddress
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

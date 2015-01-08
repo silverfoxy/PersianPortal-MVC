@@ -19,6 +19,7 @@ namespace PersianPortal.Models
         public IEnumerable<string> Attachments { get; set; }
 
         [Required]
+        [Column(TypeName = "datetime2")]
         [Display(Name = "تاریخ انتشار")]
         public DateTime PublishDate { get; set; }
 
