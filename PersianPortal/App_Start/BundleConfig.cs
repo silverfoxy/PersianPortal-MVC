@@ -23,7 +23,8 @@ namespace PersianPortal
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
                      "~/Scripts/bootstrap-datepicker.min.js",
-                     "~/Scripts/bootstrap-datepicker.fa.min.js"));
+                     "~/Scripts/bootstrap-datepicker.fa.min.js",
+                     "~/Scripts/persianDatepicker.js"));
 
                      //bundles.Add(new StyleBundle("~/Content/css").Include(
             //          "~/Content/bootstrap.css",
@@ -38,7 +39,8 @@ namespace PersianPortal
                       "~/Content/bootstrap-rtl.min.css",
                       "~/Content/bootstrap-rtl.css",
                       "~/Content/bootstrap-theme.css",
-                      "~/Content/bootstrap-datepicker.min.css"));
+                      "~/Content/bootstrap-datepicker.min.css",
+                      "~/Content/persianDatepicker-default.css"));
 
         }
     }

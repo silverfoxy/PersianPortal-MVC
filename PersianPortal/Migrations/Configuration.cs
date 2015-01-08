@@ -1,4 +1,4 @@
-namespace PersianPortal.Migrations
+﻿namespace PersianPortal.Migrations
 {
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
@@ -19,7 +19,7 @@ namespace PersianPortal.Migrations
         {
             //  This method will be called after migrating to the latest version.
 
-            var manager = new UserManager<User>(
+            var userManager = new UserManager<User>(
                 new UserStore<User>(
                     new ApplicationDbContext()));
                         for (int i = 0; i < 4; i++)
@@ -32,8 +32,29 @@ namespace PersianPortal.Migrations
                                 DateOfBirth = DateTime.Now,
                                 EmailAddress = string.Format("User{0}@gmail.com", i.ToString())
                             };
-                            manager.Create(user, string.Format("Password{0}", i.ToString()));
+                            userManager.Create(user, string.Format("Password{0}", i.ToString()));
                         }
+            //Creating Admin Users
+            var admin = new User() { UserName = "admin", DateOfBirth = DateTime.Parse("1371/01/01"), EmailAddress = "Admin@PersianPortal.ir", Name = "نینا", FamilyName = "رفیعی فر" };
+            var newsAdmin = new User() { UserName = "NewsAdmin", DateOfBirth = DateTime.Parse("1371/01/01"), EmailAddress = "Admin@PersianPortal.ir", Name = "نینا", FamilyName = "رفیعی فر" };
+            var poemsAdmin = new User() { UserName = "PoemsAdmin", DateOfBirth = DateTime.Parse("1371/01/01"), EmailAddress = "Admin@PersianPortal.ir", Name = "نینا", FamilyName = "رفیعی فر" };
+            userManager.Create(admin, "123456");
+            userManager.Create(poemsAdmin, "123456");
+            userManager.Create(newsAdmin, "123456");
+
+            //Creating Roles
+            var roleManager = new RoleManager<Role>(new RoleStore<Role>(new ApplicationDbContext()));
+            var adminRole = new Role("Administrator", "مدیر سایت");
+            var newsAdminRole = new Role("NewsAdmin", "مدیر اخبار");
+            var poemsAdminRole = new Role("PoemsAdmin", "مدیر اشعار");
+            roleManager.Create<Role>(adminRole);
+            roleManager.Create<Role>(newsAdminRole);
+            roleManager.Create<Role>(poemsAdminRole);
+
+            //Assigning Roles To Users
+            userManager.AddToRole(admin.Id, adminRole.Name);
+            userManager.AddToRole(poemsAdmin.Id, poemsAdminRole.Name);
+            userManager.AddToRole(newsAdmin.Id, newsAdminRole.Name);
         }
     }
 }

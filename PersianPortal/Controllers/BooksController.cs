@@ -37,6 +37,7 @@ namespace PersianPortal.Controllers
         }
 
         // GET: Books/Create
+        [Authorize(Roles = "Administrator,PoemsAdmin")]
         public ActionResult Create()
         {
             ViewBag.AuthorId = new SelectList(db.Users, "Id", "UserName");
@@ -47,6 +48,7 @@ namespace PersianPortal.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Administrator,PoemsAdmin")]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Body,Tags,AuthorId,PublishDate,Version,Name,Publisher,PDFURL")] Book book)
         {
@@ -62,6 +64,7 @@ namespace PersianPortal.Controllers
         }
 
         // GET: Books/Edit/5
+        [Authorize(Roles = "Administrator,PoemsAdmin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -81,6 +84,7 @@ namespace PersianPortal.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Administrator,PoemsAdmin")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Body,Tags,AuthorId,PublishDate,Version,Name,Publisher,PDFURL")] Book book)
         {
@@ -95,6 +99,7 @@ namespace PersianPortal.Controllers
         }
 
         // GET: Books/Delete/5
+        [Authorize(Roles = "Administrator,PoemsAdmin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -111,6 +116,7 @@ namespace PersianPortal.Controllers
 
         // POST: Books/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Administrator,PoemsAdmin")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

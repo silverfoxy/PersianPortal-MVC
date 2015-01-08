@@ -10,6 +10,7 @@ using PersianPortal.Models;
 
 namespace PersianPortal.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class PoemTypesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

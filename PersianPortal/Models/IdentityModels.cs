@@ -27,6 +27,20 @@ namespace PersianPortal.Models
         public string EmailAddress { get; set; }
     }
 
+    public class Role : IdentityRole
+    {
+        [Required]
+        [MaxLength(50)]
+        public string Title { get; set; }
+
+        public Role() : base() { }
+
+        public Role(string name, string title) : base(name)
+        {
+            this.Title = title;
+        }
+    }
+
     public class ApplicationDbContext : IdentityDbContext<User>
     {
         public DbSet<Article> Article { get; set; }
