@@ -13,14 +13,13 @@ namespace PersianPortal.Models
         public int Id { get; set; }
 
         [Required]
-        [Display(Name = "محتوا")]
+        [Display(Name = "محتوا"), DataType(DataType.Html)]
         public string Body { get; set; }
 
         [MaxLength(300, ErrorMessage = "حداکثر طول مجاز برای تگ 300 کاراکتر است."), Display(Name = "تگ ها")]
         public string Tags { get; set; }
 
-        [MaxLength(200)]
-        public IEnumerable<string> Attachments { get; set; }
+        public IEnumerable<File> Attachments { get; set; }
 
         public string AuthorId { get; set; }
 

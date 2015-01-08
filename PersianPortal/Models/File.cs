@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -15,8 +16,14 @@ namespace PersianPortal.Models
         public Extension Extension { get; set; }
 
         [Required]
-        [MaxLength(200), Display(Name = "آدرس فایل")]
+        [MaxLength(200), Display(Name = "آدرس فایل"), DataType(DataType.Upload)]
         public string URL { get; set; }
+
+        [Required]
+        public string UploaderId { get; set; }
+
+        [ForeignKey("UploaderId")]
+        public virtual User UploaderUser { get; set; }
     }
 
     public enum Extension
