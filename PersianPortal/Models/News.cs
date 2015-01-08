@@ -13,6 +13,10 @@ namespace PersianPortal.Models
         public int id { get; set; }
 
         [Required]
+        [MaxLength(200, ErrorMessage = "حداکثر طول مجاز برای تگ 200 کاراکتر است."), Display(Name = "تیتر خبر")]
+        public string Title { get; set; }
+
+        [Required]
         [Display(Name = "محتوا"), DataType(DataType.Html)]
         public string Body { get; set; }
 

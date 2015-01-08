@@ -34,6 +34,18 @@
                             };
                             userManager.Create(user, string.Format("Password{0}", i.ToString()));
                         }
+
+            //Creating Roles
+            var roleManager = new RoleManager<Role>(new RoleStore<Role>(new ApplicationDbContext()));
+            var adminRole = new Role("Administrator", "مدیر سایت");
+            var newsAdminRole = new Role("NewsAdmin", "مدیر اخبار");
+            var poemsAdminRole = new Role("PoemsAdmin", "مدیر اشعار");
+
+            roleManager.Create<Role>(adminRole);
+            roleManager.Create<Role>(newsAdminRole);
+            roleManager.Create<Role>(poemsAdminRole);
+
+
             //Creating Admin Users
             var admin = new User() { UserName = "admin", DateOfBirth = DateTime.Parse("1371/01/01"), EmailAddress = "Admin@PersianPortal.ir", Name = "نینا", FamilyName = "رفیعی فر" };
             var newsAdmin = new User() { UserName = "NewsAdmin", DateOfBirth = DateTime.Parse("1371/01/01"), EmailAddress = "Admin@PersianPortal.ir", Name = "نینا", FamilyName = "رفیعی فر" };
@@ -42,19 +54,10 @@
             userManager.Create(poemsAdmin, "123456");
             userManager.Create(newsAdmin, "123456");
 
-            //Creating Roles
-            var roleManager = new RoleManager<Role>(new RoleStore<Role>(new ApplicationDbContext()));
-            var adminRole = new Role("Administrator", "مدیر سایت");
-            var newsAdminRole = new Role("NewsAdmin", "مدیر اخبار");
-            var poemsAdminRole = new Role("PoemsAdmin", "مدیر اشعار");
-            roleManager.Create<Role>(adminRole);
-            roleManager.Create<Role>(newsAdminRole);
-            roleManager.Create<Role>(poemsAdminRole);
-
             //Assigning Roles To Users
-            userManager.AddToRole(admin.Id, adminRole.Name);
-            userManager.AddToRole(poemsAdmin.Id, poemsAdminRole.Name);
-            userManager.AddToRole(newsAdmin.Id, newsAdminRole.Name);
+            admin.Roles.Add(new IdentityUserRole { RoleId = adminRole.Id, UserId = admin.Id });
+            poemsAdmin.Roles.Add(new IdentityUserRole { RoleId = poemsAdminRole.Id, UserId = poemsAdmin.Id });
+            newsAdmin.Roles.Add(new IdentityUserRole { RoleId = newsAdminRole.Id, UserId = newsAdmin.Id });
         }
     }
 }
