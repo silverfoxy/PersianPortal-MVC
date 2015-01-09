@@ -170,6 +170,7 @@
     <Compile Include="Controllers\NewsTypesController.cs" />
     <Compile Include="Controllers\PoemsController.cs" />
     <Compile Include="Controllers\PoemTypesController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -187,6 +188,7 @@
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\NewsViewModel.cs" />
     <Compile Include="Models\Poem.cs" />
+    <Compile Include="Models\SearchViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -768,6 +770,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Uploads\" />
+    <Folder Include="Views\Search\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

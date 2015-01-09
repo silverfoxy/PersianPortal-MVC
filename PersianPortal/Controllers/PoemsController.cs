@@ -18,8 +18,8 @@ namespace PersianPortal.Controllers
         // GET: Poems
         public ActionResult Index()
         {
-            var poem = db.Poem.Include(p => p.Author);
-            return View(poem.ToList());
+            var poem = db.Poem.Include(p => p.PoemType);
+            return View(db.Poem.ToList());
         }
 
         // GET: Poems/Details/5
@@ -55,6 +55,9 @@ namespace PersianPortal.Controllers
         {
             if (ModelState.IsValid)
             {
+                poem.PoemTypeId = poem.PoemType.Id;
+                poem.PoemType = db.PoemType.Find(poem.PoemType.Id);
+                poem.AuthorId = User.Identity.GetUserId();
                 db.Poem.Add(poem);
                 db.SaveChanges();
                 return RedirectToAction("Index");
