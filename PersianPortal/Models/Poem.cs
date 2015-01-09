@@ -46,7 +46,7 @@ namespace PersianPortal.Models
         [MaxLength(50), Display(Name = "چاپ شده در کتاب")]
         public string BookName { get; set; }
 
-        [MaxLength(200), Display(Name = "فایل صوتی"), DataType(DataType.Upload)]
+        [MaxLength(500), Display(Name = "فایل صوتی"), DataType(DataType.Upload)]
         public string VoiceURL { get; set; }
     }
 

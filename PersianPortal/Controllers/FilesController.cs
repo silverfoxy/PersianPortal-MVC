@@ -74,7 +74,7 @@ namespace PersianPortal.Controllers
                     {
                         var fileName = Path.GetFileName(file.FileName);
                         //extension.Substring(1) to remove the '.'
-                        var extension = Path.GetExtension(file.FileName).Substring(1);
+                        var extension = Path.GetExtension(file.FileName).Substring(1).ToLower();
                         filePath = Path.Combine(Server.MapPath("~/Uploads/"), fileName);
                         if (!Enum.GetNames(typeof(FileExtensions)).Contains(extension))
                             throw new Exception("Invalid FileType.");

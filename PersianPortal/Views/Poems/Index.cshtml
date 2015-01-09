@@ -48,7 +48,7 @@
             @Html.DisplayFor(modelItem => item.BookName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.VoiceURL)
+            @(item.VoiceURL == null ? "ندارد" : "دارد")
         </td>
         <td>
                     @Html.ActionLink("ویرایش", "Edit", new { id = item.Id }) |
@@ -108,17 +108,27 @@
             <div class=" col-lg-12" style="padding: 10px 30px 20px 30px !important">
                 <div class="news-heading">
                     <h3>
-                        <a href="#">@item.Name - </a>
-                        <span>@item.Poet .</span>
-                        <span>@item.BookName</span>
-                        
-                        <i class="fa fa-fw fa-volume-up" style="float:left;margin-left:50px"></i>
-                        <a href="#" style="text-decoration:none">
-                            <i class="fa fa-fw fa-pause" style="font-size:small; vertical-align:middle; float:left; margin-left:20px; margin-top:6px"></i>
-                        </a><a href="#" style="text-decoration:none">
-                            <i class="fa fa-fw fa-play" style="font-size:small; vertical-align:middle; float:left; margin-left:20px; margin-top:6px"></i>
-                        </a>
-
+                        <a href="#">@item.Poet</a>&nbsp;-&nbsp;<a href="#">@item.Name</a>
+                        @if (item.BookName != null)
+                        {
+                            <span> - @item.BookName</span>
+                        }
+                        @if (item.VoiceURL != null)
+                        {
+                            <a href="#" style="text-decoration:none" onclick="document.getElementById('@("voice-" + (item.Id).ToString())').muted = !(document.getElementById('@("voice-" + (item.Id).ToString())').muted); $(this).find('i').toggleClass('fa-volume-up').toggleClass('fa-volume-off'); return false;">
+                                <i class="fa fa-fw fa-volume-up" style="float:left;margin-left:50px"></i>
+                            </a>
+                            <a href="#" style="text-decoration:none" onclick="document.getElementById('@("voice-" + (item.Id).ToString())').pause(); return false;">
+                                <i class="fa fa-fw fa-pause" style="font-size:small; vertical-align:middle; float:left; margin-left:20px; margin-top:6px"></i>
+                            </a>
+                            <a href="#" style="text-decoration:none" onclick="document.getElementById('@("voice-" + (item.Id).ToString())').play(); return false;">
+                                <i class="fa fa-fw fa-play" style="font-size:small; vertical-align:middle; float:left; margin-left:20px; margin-top:6px"></i>
+                            </a>
+                            <audio id="@("voice-" + (item.Id).ToString())">
+                                <source src="@item.VoiceURL" type="audio/mpeg">
+                                پخش صدا در مرورگر شما پشتیبانی نمی شود.
+                            </audio>
+                        }
                         <span class="news-date">
                             <strong>@item.PoemType.Type</strong>
                         </span>
@@ -126,7 +136,7 @@
                 </div>
                 <p style="font-family:'B Nazanin';text-align:center">
                     @Html.Raw(item.Body)
-                    <strong style="float:left;margin:20px">@item.Author</strong>
+                    <strong style="float:left;margin:20px">@item.Author.FullName</strong>
                 </p>
                 
                 <div class="dashed-hr"></div>
