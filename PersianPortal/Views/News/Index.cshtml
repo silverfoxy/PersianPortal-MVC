@@ -46,13 +46,26 @@
 
     </table>
 
+    <form class="col-lg-6 col-lg-offset-4 " role="form">
+        <label class="radio-inline">
+            همه<input checked="checked" type="radio" name="optradio" onclick="showAll()">
+        </label>
+        <label class="radio-inline" onclick="HideOthersSadi()">
+            سعدی<input type="radio" name="optradio">
+        </label>
+        <label class="radio-inline" onclick="HideOthersSaye()">
+            سایه<input type="radio" name="optradio">
+        </label>
+    </form>
+
+
     @foreach (var item in Model)
     {
         <div class="row news-box">
             <div class=" col-lg-8 col-lg-offset-2" style="padding: 10px 30px 20px 30px !important">
                 <div class="news-heading">
                     <h3>
-                        <a href="#">تحریم‌ها برداشته می شود/ بانک‌ها آماده باشند</a>
+                        <a href="#">title</a>
                         <span> : </span>
                         <span class="news-date">
                             <strong>@item.PublishDate.Day</strong>
