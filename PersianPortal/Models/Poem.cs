@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace PersianPortal.Models
 {
@@ -13,21 +14,34 @@ namespace PersianPortal.Models
         public int Id { get; set; }
 
         [Required]
-        [Display(Name = "محتوا"), DataType(DataType.Html)]
+        [Display(Name = "نام شعر")]
+        [MaxLength(100, ErrorMessage = "نام شعر حداکثر می تواند 100 کاراکتر باشد.")]
+        public string Name { get; set; }
+
+        [Required]
+        [AllowHtml]
+        [Display(Name = "متن شعر"), DataType(DataType.Html)]
         public string Body { get; set; }
 
         [MaxLength(300, ErrorMessage = "حداکثر طول مجاز برای تگ 300 کاراکتر است."), Display(Name = "تگ ها")]
         public string Tags { get; set; }
 
-        public IEnumerable<File> Attachments { get; set; }
-
         public string AuthorId { get; set; }
 
         [ForeignKey("AuthorId")]
-        public User Author { get; set; }
+        public virtual User Author { get; set; }
 
-        [Required, Display(Name = "سبک")]
-        public PoemType PoemType { get; set; }
+        [Required]
+        [Display(Name = "شاعر")]
+        [MaxLength(100, ErrorMessage = "نام شاعر حداکثر می تواند 100 کاراکتر باشد.")]
+        public string Poet { get; set; }
+
+        [Required]
+        public int PoemTypeId { get; set; }
+
+        [ForeignKey("PoemTypeId")]
+        [Display(Name = "سبک")]
+        public virtual PoemType PoemType { get; set; }
 
         [MaxLength(50), Display(Name = "چاپ شده در کتاب")]
         public string BookName { get; set; }

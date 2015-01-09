@@ -53,18 +53,18 @@
         <div class="form-group">
             @Html.LabelFor(model => model.News.PublishDate, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.News.PublishDate)
+                @Html.TextBoxFor(model => model.News.PublishDate, new { disabled = "disabled" })
                 @Html.ValidationMessageFor(model => model.News.PublishDate)
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.Type, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.Type, new SelectList(Model.NewsTypes, "Id", "Type", "علمی"))
                 @Html.ValidationMessageFor(model => model.Type)
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

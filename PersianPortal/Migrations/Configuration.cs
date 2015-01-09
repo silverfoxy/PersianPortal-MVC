@@ -18,7 +18,7 @@
         protected override void Seed(PersianPortal.Models.ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
-
+            #region Adding Users and Roles
             var userManager = new UserManager<User>(
                 new UserStore<User>(
                     new ApplicationDbContext()));
@@ -58,6 +58,22 @@
             admin.Roles.Add(new IdentityUserRole { RoleId = adminRole.Id, UserId = admin.Id });
             poemsAdmin.Roles.Add(new IdentityUserRole { RoleId = poemsAdminRole.Id, UserId = poemsAdmin.Id });
             newsAdmin.Roles.Add(new IdentityUserRole { RoleId = newsAdminRole.Id, UserId = newsAdmin.Id });
+            #endregion
+
+            #region Adding PoemTypes and NewsTypes
+            context.NewsType.AddOrUpdate(new NewsType() { Id = 1, Type = "علمی" });
+            context.NewsType.AddOrUpdate(new NewsType() { Id = 2, Type = "سیاسی" });
+            context.NewsType.AddOrUpdate(new NewsType() { Id = 3, Type = "اقتصادی" });
+            context.NewsType.AddOrUpdate(new NewsType() { Id = 4, Type = "هنری" });
+            context.NewsType.AddOrUpdate(new NewsType() { Id = 5, Type = "ورزشی" });
+            context.NewsType.AddOrUpdate(new NewsType() { Id = 6, Type = "فرهنگی" });
+
+            context.PoemType.AddOrUpdate(new PoemType() { Id = 1, Type = "غزل" });
+            context.PoemType.AddOrUpdate(new PoemType() { Id = 2, Type = "قصیده" });
+            context.PoemType.AddOrUpdate(new PoemType() { Id = 3, Type = "مثنوی" });
+            context.PoemType.AddOrUpdate(new PoemType() { Id = 4, Type = "رباعی" });
+            context.PoemType.AddOrUpdate(new PoemType() { Id = 5, Type = "شعر نو" });
+            #endregion
         }
     }
 }

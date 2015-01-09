@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using PersianPortal.Models;
+using Microsoft.AspNet.Identity;
 
 namespace PersianPortal.Controllers
 {
@@ -40,7 +41,7 @@ namespace PersianPortal.Controllers
         [Authorize(Roles = "Administrator,PoemsAdmin")]
         public ActionResult Create()
         {
-            ViewBag.AuthorId = new SelectList(db.Users, "Id", "UserName");
+            ViewBag.PoemTypes = new SelectList(db.PoemType, "Id", "Type");
             return View();
         }
 
@@ -50,7 +51,7 @@ namespace PersianPortal.Controllers
         [HttpPost]
         [Authorize(Roles = "Administrator,PoemsAdmin")]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Body,Tags,AuthorId,BookName,VoiceURL")] Poem poem)
+        public ActionResult Create(Poem poem)
         {
             if (ModelState.IsValid)
             {
@@ -60,6 +61,7 @@ namespace PersianPortal.Controllers
             }
 
             ViewBag.AuthorId = new SelectList(db.Users, "Id", "UserName", poem.AuthorId);
+            ViewBag.PoemTypes = new SelectList(db.PoemType, "Id", "Type");
             return View(poem);
         }
 
@@ -71,7 +73,12 @@ namespace PersianPortal.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Poem poem = db.Poem.Find(id);
+            Poem poem;
+            var roles = db.Users.Find(User.Identity.GetUserId()).Roles.ToList();
+            if (roles.Select(r => r.Role.Name).Contains("Administrator"))
+                poem = db.Poem.Find(id);
+            else
+                poem = db.Poem.Where(f => f.Id == id && f.AuthorId == User.Identity.GetUserId()).FirstOrDefault();
             if (poem == null)
             {
                 return HttpNotFound();
@@ -86,16 +93,31 @@ namespace PersianPortal.Controllers
         [HttpPost]
         [Authorize(Roles = "Administrator,PoemsAdmin")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Body,Tags,AuthorId,BookName,VoiceURL")] Poem poem)
+        public ActionResult Edit(Poem poem)
         {
-            if (ModelState.IsValid)
+            var roles = db.Users.Find(User.Identity.GetUserId()).Roles.ToList();
+            var dbPoem = db.Poem.Find(poem.Id);
+            if (roles.Select(r => r.Role.Name).Contains("Administrator") || dbPoem.AuthorId == User.Identity.GetUserId())
             {
-                db.Entry(poem).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                //if (ModelState.IsValid)
+                try
+                {
+                    dbPoem.Body = poem.Body;
+                    dbPoem.Name = poem.Name;
+                    dbPoem.Tags = poem.Tags;
+                    dbPoem.Poet = poem.Poet;
+                    db.Entry(dbPoem).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    return View(db.Poem.Find(poem.Id));
+                }
             }
             ViewBag.AuthorId = new SelectList(db.Users, "Id", "UserName", poem.AuthorId);
-            return View(poem);
+            ViewBag.PoemTypes = new SelectList(db.PoemType, "Id", "Type");
+            return View();
         }
 
         // GET: Poems/Delete/5
@@ -106,7 +128,12 @@ namespace PersianPortal.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Poem poem = db.Poem.Find(id);
+            Poem poem;
+            var roles = db.Users.Find(User.Identity.GetUserId()).Roles.ToList();
+            if (roles.Select(r => r.Role.Name).Contains("Administrator"))
+                poem = db.Poem.Find(id);
+            else
+                poem = db.Poem.Where(f => f.Id == id && f.AuthorId == User.Identity.GetUserId()).FirstOrDefault();
             if (poem == null)
             {
                 return HttpNotFound();
@@ -120,7 +147,12 @@ namespace PersianPortal.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Poem poem = db.Poem.Find(id);
+            Poem poem;
+            var roles = db.Users.Find(User.Identity.GetUserId()).Roles.ToList();
+            if (roles.Select(r => r.Role.Name).Contains("Administrator"))
+                poem = db.Poem.Find(id);
+            else
+                poem = db.Poem.Where(f => f.Id == id && f.AuthorId == User.Identity.GetUserId()).FirstOrDefault();
             db.Poem.Remove(poem);
             db.SaveChanges();
             return RedirectToAction("Index");
