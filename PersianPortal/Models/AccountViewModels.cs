@@ -32,15 +32,15 @@ namespace PersianPortal.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "User name")]
+        [Display(Name = "نام کاربری")]
         public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "رمز عبور")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "مرا به خاطر بسپار")]
         public bool RememberMe { get; set; }
     }
 

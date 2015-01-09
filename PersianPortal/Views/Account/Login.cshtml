@@ -1,58 +1,101 @@
 ﻿@model PersianPortal.Models.LoginViewModel
 
 @{
-    ViewBag.Title = "Log in";
+    ViewBag.Title = "ورود به پورتال";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 <div class="row">
     <div class="col-md-8">
         <section id="loginForm">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
+                <h4>برای ورود به پورتال نام کاربری و رمز عبور خود را وارد نمایید :</h4>
                 <hr />
-                @Html.ValidationSummary(true)
-                <div class="form-group">
-                    @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.UserName)
+                <div class="col-lg-7 col-lg-offset-3">
+                    @Html.ValidationSummary(true)
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.UserName, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.UserName)
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password)
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Password)
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
+                    <div class="form-group">
+                        <div class="col-md-offset-8 col-md-4">
+                            <div class="checkbox">
+                                @Html.CheckBoxFor(m => m.RememberMe)
+                                @Html.LabelFor(m => m.RememberMe)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-5 col-md-5">
+                            <input type="submit" value=" ورود به پورتال" class="btn btn-default" />
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
-                    </div>
-                </div>
-                <p>
-                    @Html.ActionLink("Register", "Register") if you don't have a local account.
-                </p>
+                 
             }
         </section>
+        <div class="col-md-12">
+            <h3>
+                اگر هنوز حساب کاربری ندارید
+                @Html.ActionLink("ثبت نام کنید", "Register").
+            </h3>
+            @*<section id="socialLoginForm">
+                @Html.Partial("_ExternalLoginsListPartial", new { Action = "ExternalLogin", ReturnUrl = ViewBag.ReturnUrl })
+            </section>*@
+            <hr/>
+        </div>
     </div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new { Action = "ExternalLogin", ReturnUrl = ViewBag.ReturnUrl })
-        </section>
+   
+    <div class="col-lg-2">
+        <div class="row news-section">
+            <div class="ad-box">
+                <div class="well">
+                    <h1 class="text-center">تبلیغات</h1>
+                    <hr />
+                    <div style="text-align: center">
+                        <img src="/images/c8c57293d052b777855b86cafb348a4b.gif" width="100%" alt="Ad 1" />
+                    </div>
+                </div>
+            </div>
+            <div class="ad-box">
+                <div class="well">
+                    <h1 class="text-center">تبلیغات</h1>
+                    <hr />
+                    <div style="text-align: center">
+                        <img src="/images/New_28142.gif" width="100%" alt="Ad 2" />
+                    </div>
+                </div>
+            </div>
+            <div class="ad-box">
+                <div class="well">
+                    <h1 class="text-center">تبلیغات</h1>
+                    <hr />
+                    <div style="text-align: center">
+                        <img src="/images/New_28529.gif" width="100%" alt="Ad 3" />
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    
+
+    
 </div>
+
+
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

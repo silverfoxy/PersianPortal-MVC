@@ -1,29 +1,116 @@
-﻿@{
+﻿@model IEnumerable<PersianPortal.Models.News>
+
+@{
     ViewBag.Title = "Home Page";
+    var count = 3;
 }
 
 @*<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-</div>*@
+        <h1>ASP.NET</h1>
+        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+        <p><a href="http://asp.net" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+    </div>*@
 
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        if (count > 0)
+        {
+            <div class="row news-box">
+                <div class=" col-lg-8 col-lg-offset-2" style="padding: 10px 30px 20px 30px !important">
+                    <div class="news-heading">
+                        <h3>
+                            <a href="#">title</a>
+                            <span> : </span>
+                            <span class="news-date">
+                                <strong>@item.PublishDate.Day</strong>
+                                @item.PublishDate.Month
+                                <em>@item.PublishDate.Year</em>
+                            </span>
+                        </h3>
+                    </div>
+                    <p>
+                        @item.Body
+                        <strong style="float:left;margin:20px">@item.Author</strong>
+                    </p>
+                    <div class="news-read-more">
+                        <span>[ </span>
+                        <a href="/talking-of-design/article/the-best-and-only-css-framework-you-need"> ادامه خبر </a>
+                        <span> ]</span>
+                    </div>
+                    <div class="dashed-hr"></div>
+                </div>
+            </div>
+            count--;
+        }
+    }
+    <div class="col-lg-2">
+        <div class="row news-section">
+            <div class="ad-box">
+                <div class="well">
+                    <h1 class="text-center">تبلیغات</h1>
+                    <hr />
+                    <div style="text-align: center">
+                        <img src="/images/c8c57293d052b777855b86cafb348a4b.gif" width="100%" alt="Ad 1" />
+                    </div>
+                </div>
+            </div>
+            <div class="ad-box">
+                <div class="well">
+                    <h1 class="text-center">تبلیغات</h1>
+                    <hr />
+                    <div style="text-align: center">
+                        <img src="/images/New_28142.gif" width="100%" alt="Ad 2" />
+                    </div>
+                </div>
+            </div>
+            <div class="ad-box">
+                <div class="well">
+                    <h1 class="text-center">تبلیغات</h1>
+                    <hr />
+                    <div style="text-align: center">
+                        <img src="/images/New_28529.gif" width="100%" alt="Ad 3" />
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+}
+else
+{
+    <div class="col-lg-2 col-lg-offset-8">
+        <div class="row news-section">
+            <div class="ad-box">
+                <div class="well">
+                    <h1 class="text-center">تبلیغات</h1>
+                    <hr />
+                    <div style="text-align: center">
+                        <img src="/images/c8c57293d052b777855b86cafb348a4b.gif" width="100%" alt="Ad 1" />
+                    </div>
+                </div>
+            </div>
+            <div class="ad-box">
+                <div class="well">
+                    <h1 class="text-center">تبلیغات</h1>
+                    <hr />
+                    <div style="text-align: center">
+                        <img src="/images/New_28142.gif" width="100%" alt="Ad 2" />
+                    </div>
+                </div>
+            </div>
+            <div class="ad-box">
+                <div class="well">
+                    <h1 class="text-center">تبلیغات</h1>
+                    <hr />
+                    <div style="text-align: center">
+                        <img src="/images/New_28529.gif" width="100%" alt="Ad 3" />
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+
+}
+
+
