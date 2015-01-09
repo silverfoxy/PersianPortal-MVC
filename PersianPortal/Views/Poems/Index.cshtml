@@ -51,7 +51,7 @@
             @Html.DisplayFor(modelItem => item.BookName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.VoiceURL)
+            @(item.VoiceURL == null ? "ندارد" : "دارد")
         </td>
         <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
@@ -64,7 +64,7 @@
 </table>
 
 
-    <a class="col-lg-2 col-lg-offset-5 col-xs-12 btn btn-default" style="margin-top:3%;margin-bottom:3%" href="@Url.Action("Create", "News")">ایجاد خبر جدید</a>
+    <a class="col-lg-2 col-lg-offset-5 col-xs-12 btn btn-default" style="margin-top:3%;margin-bottom:3%" href="@Url.Action("Create", "Poems")">ایجاد شعر جدید</a>
 
 
     <div class="col-lg-12 switch-toggle switch-5 well" style="direction:ltr">
@@ -106,15 +106,23 @@
             <div class=" col-lg-8 col-lg-offset-2" style="padding: 10px 30px 20px 30px !important">
                 <div class="news-heading">
                     <h3>
-                        <a href="#">@item.Author</a>
-                        <span></span>
-                        <i class="fa fa-fw fa-volume-up" style="float:left;margin-left:50px"></i>
-                        <a href="#" style="text-decoration:none">
-                            <i class="fa fa-fw fa-pause" style="font-size:small; vertical-align:middle; float:left; margin-left:20px; margin-top:6px"></i>
-                        </a><a href="#" style="text-decoration:none">
-                            <i class="fa fa-fw fa-play" style="font-size:small; vertical-align:middle; float:left; margin-left:20px; margin-top:6px"></i>
-                        </a>
-
+                        <a href="#">@item.Poet</a>
+                        @if (item.VoiceURL != null)
+                        {
+                            <a href="#" style="text-decoration:none" onclick="document.getElementById('@("voice-" + (item.Id).ToString())').muted = !(document.getElementById('@("voice-" + (item.Id).ToString())').muted); $(this).find('i').toggleClass('fa-volume-up').toggleClass('fa-volume-off'); return false;">
+                                <i class="fa fa-fw fa-volume-up" style="float:left;margin-left:50px"></i>
+                            </a>
+                            <a href="#" style="text-decoration:none" onclick="document.getElementById('@("voice-" + (item.Id).ToString())').pause(); return false;">
+                                <i class="fa fa-fw fa-pause" style="font-size:small; vertical-align:middle; float:left; margin-left:20px; margin-top:6px"></i>
+                            </a>
+                            <a href="#" style="text-decoration:none" onclick="document.getElementById('@("voice-" + (item.Id).ToString())').play(); return false;">
+                                <i class="fa fa-fw fa-play" style="font-size:small; vertical-align:middle; float:left; margin-left:20px; margin-top:6px"></i>
+                            </a>
+                            <audio id="@("voice-" + (item.Id).ToString())">
+                                <source src="@item.VoiceURL" type="audio/mpeg">
+                                پخش صدا در مرورگر شما پشتیبانی نمی شود.
+                            </audio>
+                        }
                         <span class="news-date">
                             <strong></strong>
                         </span>
