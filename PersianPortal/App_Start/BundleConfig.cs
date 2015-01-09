@@ -21,6 +21,7 @@ namespace PersianPortal
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
+                      "~/Scripts/News.js",
                       "~/Scripts/respond.js",
                      "~/Scripts/bootstrap-datepicker.min.js",
                      "~/Scripts/bootstrap-datepicker.fa.min.js",
@@ -38,6 +39,9 @@ namespace PersianPortal
                       "~/Content/bootstrap-glyphicons.css",
                 //"~/Content/bootstrap-rtl.min.css",
                       "~/Content/bootstrap-rtl.css",
+                      "~/Content/toggle-switch-px.css",
+                      "~/Content/toggle-switch-rem.css",
+                      "~/Content/toggle-switch.css",
                 //"~/Content/bootstrap-theme.css",
                       "~/Content/bootstrap-datepicker.min.css"));
 
