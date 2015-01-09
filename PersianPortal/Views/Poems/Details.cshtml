@@ -1,66 +1,69 @@
 ﻿@model PersianPortal.Models.Poem
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "جزییات";
 }
 
-<h2>Details</h2>
+<h2>جزییات</h2>
 
-<div>
-    <h4>Poem</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Poet)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Poet)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Body)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Body)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Tags)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Tags)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BookName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BookName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.VoiceURL)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.VoiceURL)
-        </dd>
-
-    </dl>
+<div class="col-lg-8 col-lg-offset-1">
+    <h4>شعر</h4>
+    <table class="table">
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Poet)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Poet)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Name)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Body)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Body)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Tags)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Tags)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.BookName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.BookName)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.VoiceURL)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.VoiceURL)
+            </td>
+        </tr>
+    </table>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<h3 class="col-lg-5 col-lg-offset-6"  style="margin-top:3%;margin-bottom:3%">
+    @Html.ActionLink("ویرایش", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("بازگشت به لیست شعر ها", "Index")
+</h3>
+
+
+    
+
