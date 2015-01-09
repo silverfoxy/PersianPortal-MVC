@@ -44,11 +44,63 @@
             </tr>
         }
 
-    </table>
+    </table>*@
+
+
+    <div class="switch-toggle switch-7 well" style="direction:ltr">
+
+        <input id="culturalb" name="view" type="radio">
+        <label for="culturalb" onclick="HideOthersCu()">فرهنگی</label>
+
+        <input id="sportsb" name="view" type="radio" checked>
+        <label for="sportsb" onclick="HideOthersSp()">ورزشی</label>
+
+        <input id="artb" name="view" type="radio">
+        <label for="artb" onclick="HideOthersAr()">هنری</label>
+
+        <input id="economicsb" name="view" type="radio" checked>
+        <label for="economicsb" onclick="HideOthersEc()">اقتصادی</label>
+
+        <input id="politicsb" name="view" type="radio" checked>
+        <label for="politicsb" onclick="HideOthersPo()">سیاسی</label>
+
+        <input id="scienceb" name="view" type="radio" checked>
+        <label for="scienceb" onclick="HideOthersSc()">علمی</label>
+
+        <input id="all" name="view" type="radio" checked>
+        <label for="all" onclick="showAll()">همه</label>
+
+        <a class="btn btn-primary"></a>
+    </div>
+
 
     @foreach (var item in Model)
     {
-        <div class="row news-box">
+        var id="";
+        switch(item.Type.ToString()){
+            case "فرهنگی" :
+                id="cultural";
+                break;
+            case "ورزشی" :
+                id="sports";
+                break;
+            case "اقتصادی" :
+                id="economics";
+                break;
+            case "سیاسی" :
+                id="politics";
+                break;
+            case "علمی" :
+                id="science";
+                break;
+            case "هنری" :
+                id="art";
+                break;
+            default :
+                id="cultural";
+                break;
+        }
+        <div class="row news-box @id">
             <div class=" col-lg-8 col-lg-offset-2" style="padding: 10px 30px 20px 30px !important">
                 <div class="news-heading">
                     <h3>

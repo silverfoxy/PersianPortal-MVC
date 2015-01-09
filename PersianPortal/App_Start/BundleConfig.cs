@@ -23,8 +23,9 @@ namespace PersianPortal
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                     "~/Scripts/bootstrap.js",
-                     "~/Scripts/respond.js",
+                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/News.js",
+                      "~/Scripts/respond.js",
                      "~/Scripts/bootstrap-datepicker.min.js",
                      "~/Scripts/bootstrap-datepicker.fa.min.js",
                      "~/Scripts/persianDatepicker.js"));
@@ -37,7 +38,7 @@ namespace PersianPortal
             bundle.Orderer = new NonOrderingBundleOrderer();
             bundles.Add(bundle);
 
-            //bundles.Add(new StyleBundle("~/Content/css").Include(
+                     //bundles.Add(new StyleBundle("~/Content/css").Include(
             //          "~/Content/bootstrap.css",
             //          "~/Content/site.css"));
 
@@ -49,6 +50,9 @@ namespace PersianPortal
                       "~/Content/bootstrap-glyphicons.css",
                 //"~/Content/bootstrap-rtl.min.css",
                       "~/Content/bootstrap-rtl.css",
+                      "~/Content/toggle-switch-px.css",
+                      "~/Content/toggle-switch-rem.css",
+                      "~/Content/toggle-switch.css",
                 //"~/Content/bootstrap-theme.css",
                       "~/Content/bootstrap-datepicker.min.css"));
 
