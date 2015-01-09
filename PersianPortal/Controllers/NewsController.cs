@@ -81,7 +81,10 @@ namespace PersianPortal.Controllers
             if (roles.Select(r => r.Role.Name).Contains("Administrator"))
                 news = db.News.Find(id);
             else
-                news = db.News.Where(f => f.Id == id && f.AuthorId == User.Identity.GetUserId()).FirstOrDefault();
+            {
+                var userid = User.Identity.GetUserId();
+                news = db.News.Where(f => f.Id == id && f.AuthorId == userid).FirstOrDefault();
+           } 
             if (news == null)
             {
                 return HttpNotFound();
