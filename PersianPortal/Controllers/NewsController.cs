@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using PersianPortal.Models;
+using Microsoft.AspNet.Identity;
+
 
 namespace PersianPortal.Controllers
 {
@@ -48,10 +50,26 @@ namespace PersianPortal.Controllers
         [HttpPost]
         [Authorize(Roles = "Administrator,NewsAdmin")]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="id,Tags,AttachmentURL,PublishDate,Type")] News news)
+        public ActionResult Create(string Title, string Body, string Tags, string Attachment, NewsType Type)
         {
+            News news = new News()
+            {
+                Tags = Tags,
+                Body = Body,
+                Title = Title,
+                Type = Type,
+                PublishDate = DateTime.Now,
+                AuthorId = User.Identity.GetUserId()
+            };
+
             if (ModelState.IsValid)
             {
+                //potentially unsafe
+                var att = db.File.Where(f => f.URL.Contains(Attachment)).First();
+                if (att != null)
+                {
+                    news.AttachmentId = att.Id;
+                }
                 db.News.Add(news);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -68,7 +86,12 @@ namespace PersianPortal.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            News news = db.News.Find(id);
+            News news;
+            var roles = db.Users.Find(User.Identity.GetUserId()).Roles.ToList();
+            if (roles.Select(r => r.Role.Name).Contains("Administrator"))
+                news = db.News.Find(id);
+            else
+                news = db.News.Where(f => f.Id == id && f.AuthorId == User.Identity.GetUserId()).FirstOrDefault();
             if (news == null)
             {
                 return HttpNotFound();
@@ -79,18 +102,34 @@ namespace PersianPortal.Controllers
         // POST: /News/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //Users can only manage their own news unless they are admin
         [HttpPost]
         [Authorize(Roles = "Administrator,NewsAdmin")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="id,Tags,AttachmentURL,PublishDate,Type")] News news)
+        public ActionResult Edit(int id, string Tags, string AttachmentURL, DateTime PublishDate, NewsType Type, string Body, string Title)
         {
-            if (ModelState.IsValid)
+            var roles = db.Users.Find(User.Identity.GetUserId()).Roles.ToList();
+            if (roles.Select(r => r.Role.Name).Contains("Administrator") || db.News.Find(id).AuthorId == User.Identity.GetUserId())
             {
-                db.Entry(news).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    News news = new News()
+                    {
+                        Id = id,
+                        Tags = Tags,
+                        AttachmentId = db.File.Where(f => AttachmentURL.Contains(f.URL)).FirstOrDefault().Id,
+                        Body = Body,
+                        Title = Title,
+                        Type = Type,
+                    };
+                    db.Entry(news).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(db.News.Find(id));
             }
-            return View(news);
+            else
+                return View();
         }
 
         // GET: /News/Delete/5
@@ -101,7 +140,12 @@ namespace PersianPortal.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            News news = db.News.Find(id);
+            News news;
+            var roles = db.Users.Find(User.Identity.GetUserId()).Roles.ToList();
+            if (roles.Select(r => r.Role.Name).Contains("Administrator"))
+                news = db.News.Find(id);
+            else
+                news = db.News.Where(f => f.Id == id && f.AuthorId == User.Identity.GetUserId()).FirstOrDefault();
             if (news == null)
             {
                 return HttpNotFound();
@@ -115,7 +159,12 @@ namespace PersianPortal.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            News news = db.News.Find(id);
+            News news;
+            var roles = db.Users.Find(User.Identity.GetUserId()).Roles.ToList();
+            if (roles.Select(r => r.Role.Name).Contains("Administrator"))
+                news = db.News.Find(id);
+            else
+                news = db.News.Where(f => f.Id == id && f.AuthorId == User.Identity.GetUserId()).FirstOrDefault();
             db.News.Remove(news);
             db.SaveChanges();
             return RedirectToAction("Index");

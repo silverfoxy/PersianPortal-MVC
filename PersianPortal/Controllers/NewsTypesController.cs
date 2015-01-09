@@ -90,31 +90,31 @@ namespace PersianPortal.Controllers
             return View(newsType);
         }
 
-        // GET: NewsTypes/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            NewsType newsType = db.NewsType.Find(id);
-            if (newsType == null)
-            {
-                return HttpNotFound();
-            }
-            return View(newsType);
-        }
+        //// GET: NewsTypes/Delete/5
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    NewsType newsType = db.NewsType.Find(id);
+        //    if (newsType == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(newsType);
+        //}
 
-        // POST: NewsTypes/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            NewsType newsType = db.NewsType.Find(id);
-            db.NewsType.Remove(newsType);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //// POST: NewsTypes/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    NewsType newsType = db.NewsType.Find(id);
+        //    db.NewsType.Remove(newsType);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
         protected override void Dispose(bool disposing)
         {

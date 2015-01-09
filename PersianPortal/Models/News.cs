@@ -10,7 +10,7 @@ namespace PersianPortal.Models
     public class News
     {
         [Key]
-        public int id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [MaxLength(200, ErrorMessage = "حداکثر طول مجاز برای تگ 200 کاراکتر است."), Display(Name = "تیتر خبر")]
@@ -23,7 +23,10 @@ namespace PersianPortal.Models
         [MaxLength(300, ErrorMessage = "حداکثر طول مجاز برای تگ 300 کاراکتر است."), Display(Name = "تگ ها")]
         public string Tags { get; set; }
 
-        public IEnumerable<File> Attachments { get; set; }
+        public int AttachmentId { get; set; }
+
+        [ForeignKey("AttachmentId")]
+        public virtual File Attachment { get; set; }
 
         [Required]
         [Column(TypeName = "datetime2")]
