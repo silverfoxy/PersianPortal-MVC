@@ -4,7 +4,7 @@
     ViewBag.Title = "مدیریت فایل ها";
 }
 
-<h2>Index</h2>
+<h2>لیست فایل ها</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -26,11 +26,9 @@
             @Html.DisplayFor(modelItem => item.Extension)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.URL)
+            <a href="@item.URL">فایل</a>
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>

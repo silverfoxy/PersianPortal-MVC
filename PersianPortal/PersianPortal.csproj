@@ -306,7 +306,7 @@
     <Content Include="Views\Books\Details.cshtml" />
     <Content Include="Views\Books\Edit.cshtml" />
     <Content Include="Views\Books\Index.cshtml" />
-    <Content Include="Views\Files\Create.cshtml" />
+    <Content Include="Views\Files\Upload.cshtml" />
     <Content Include="Views\Files\Delete.cshtml" />
     <Content Include="Views\Files\Details.cshtml" />
     <Content Include="Views\Files\Edit.cshtml" />

@@ -13,7 +13,7 @@ namespace PersianPortal.Models
         public int Id { get; set; }
 
         [Required, Display(Name = "پسوند فایل")]
-        public Extension Extension { get; set; }
+        public FileExtensions Extension { get; set; }
 
         [Required]
         [MaxLength(200), Display(Name = "آدرس فایل"), DataType(DataType.Upload)]
@@ -26,7 +26,7 @@ namespace PersianPortal.Models
         public virtual User UploaderUser { get; set; }
     }
 
-    public enum Extension
+    public enum FileExtensions
     {
         pdf,
         jpg,
