@@ -5,7 +5,7 @@
 }
 
 <h2>Details</h2>
-
+@Html.ActionLink("Upload Another File", "Upload")
 <div>
     <h4>File</h4>
     <hr />
@@ -23,7 +23,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.URL)
+            <a href="@Model.URL">فایل</a>
         </dd>
 
     </dl>
