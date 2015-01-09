@@ -58,7 +58,7 @@ namespace PersianPortal.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "تکرار رمز عبور")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = "رمز عبور و تکرارش یکسان نیستند.")]
         public string ConfirmPassword { get; set; }
 
         [Required]

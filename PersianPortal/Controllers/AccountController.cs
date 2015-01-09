@@ -53,7 +53,7 @@ namespace PersianPortal.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Invalid username or password.");
+                    ModelState.AddModelError("", "نام کاربری یا رمز عبور نا معتبر است.");
                 }
             }
 

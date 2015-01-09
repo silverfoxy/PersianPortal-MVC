@@ -27,6 +27,7 @@ namespace PersianPortal.Models
 
         public int? AttachmentId { get; set; }
 
+        [Display(Name = "پیوند ها")]
         [ForeignKey("AttachmentId")]
         public virtual File Attachment { get; set; }
 
