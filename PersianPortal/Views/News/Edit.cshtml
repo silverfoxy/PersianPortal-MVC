@@ -1,4 +1,4 @@
-﻿@model PersianPortal.Models.News
+﻿@model PersianPortal.Models.NewsViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -15,36 +15,53 @@
         <h4>News</h4>
         <hr />
         @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.id)
+        @Html.HiddenFor(model => model.News.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Tags, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.News.Title, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Tags)
-                @Html.ValidationMessageFor(model => model.Tags)
+                @Html.EditorFor(model => model.News.Title)
+                @Html.ValidationMessageFor(model => model.News.Title)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.AttachmentURL, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.News.Body, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.AttachmentURL)
-                @Html.ValidationMessageFor(model => model.AttachmentURL)
+                @Html.TextAreaFor(model => model.News.Body, new { @id = "news-body" })
+                @Html.ValidationMessageFor(model => model.News.Body)
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.News.Tags, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.News.Tags)
+                @Html.ValidationMessageFor(model => model.News.Tags)
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.PublishDate, new { @class = "control-label col-md-2" })
+        @Html.HiddenFor(model => model.News.Attachment.URL)
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.News.Attachment.URL, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PublishDate)
-                @Html.ValidationMessageFor(model => model.PublishDate)
+                @Html.EditorFor(model => model.News.Attachment.URL)
+                @Html.ValidationMessageFor(model => model.News.Attachment.URL)
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.News.PublishDate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.News.PublishDate)
+                @Html.ValidationMessageFor(model => model.News.PublishDate)
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Type, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Type)
+                @Html.DropDownListFor(model => model.Type, new SelectList(Model.NewsTypes, "Id", "Type", "علمی"))
                 @Html.ValidationMessageFor(model => model.Type)
             </div>
         </div>
@@ -63,4 +80,11 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/ckeditor")
+
+    <script>
+        $(function () {
+            $('#news-body').ckeditor();
+        });
+    </script>
 }

@@ -1,4 +1,7 @@
-﻿using System.Web;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Web;
 using System.Web.Optimization;
 
 namespace PersianPortal
@@ -27,6 +30,14 @@ namespace PersianPortal
                      "~/Scripts/bootstrap-datepicker.fa.min.js",
                      "~/Scripts/persianDatepicker.js"));
 
+            var bundle = new ScriptBundle("~/bundles/ckeditor").Include(
+                "~/Scripts/ckeditor/ckeditor.js",
+                "~/Scripts/ckeditor/config.js",
+                "~/Scripts/ckeditor/styles.js",
+                "~/Scripts/ckeditor/adapters/jquery.js");
+            bundle.Orderer = new NonOrderingBundleOrderer();
+            bundles.Add(bundle);
+
                      //bundles.Add(new StyleBundle("~/Content/css").Include(
             //          "~/Content/bootstrap.css",
             //          "~/Content/site.css"));
@@ -45,6 +56,13 @@ namespace PersianPortal
                 //"~/Content/bootstrap-theme.css",
                       "~/Content/bootstrap-datepicker.min.css"));
 
+        }
+    }
+    class NonOrderingBundleOrderer : IBundleOrderer
+    {
+        public IEnumerable<BundleFile> OrderFiles(BundleContext context, IEnumerable<BundleFile> files)
+        {
+            return files;
         }
     }
 }

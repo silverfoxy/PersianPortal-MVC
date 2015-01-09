@@ -17,6 +17,8 @@ namespace PersianPortal.Models
         [MaxLength(100, ErrorMessage = "حداکثر طول مجاز برای نام خانوادگی 200 کاراکتر است."), Display(Name = "نام خانوادگی")]
         public string FamilyName { get; set; }
 
+        public string FullName { get { return Name + " " + FamilyName; } }
+
         [Required]
         [Column(TypeName = "datetime2")]
         [DataType(DataType.Date), Display(Name = "تاریخ تولد")]

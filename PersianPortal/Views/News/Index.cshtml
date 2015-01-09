@@ -7,7 +7,7 @@
 <div class="col-lg-8">
     <h2>تازه ترین خبرها</h2>
 
-    @*<p>
+    <p>
         @Html.ActionLink("Create New", "Create")
     </p>
     <table class="table">
@@ -34,17 +34,17 @@
                     @Html.DisplayFor(modelItem => item.PublishDate)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Type)
+                    @Html.DisplayFor(modelItem => item.Type.Type)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                 </td>
             </tr>
         }
 
-    </table>*@
+    </table>
 
 
     <div class="switch-toggle switch-7 well" style="direction:ltr">
@@ -73,7 +73,7 @@
         <a class="btn btn-primary"></a>
     </div>
 
-   
+
     @foreach (var item in Model)
     {
         var id="";
@@ -104,7 +104,7 @@
             <div class=" col-lg-8 col-lg-offset-2" style="padding: 10px 30px 20px 30px !important">
                 <div class="news-heading">
                     <h3>
-                        <a href="#">title</a>
+                        <a href="#">@item.Title</a>
                         <span> : </span>
                         <span class="news-date">
                             <strong>@item.PublishDate.Day</strong>
@@ -112,17 +112,17 @@
                             <em>@item.PublishDate.Year</em>
                         </span>
                     </h3>
-                    </div>
-                    <p>
-                        @item.Body
-                        <strong style="float:left;margin:20px">@item.Author</strong>
-                    </p>
-                    <div class="news-read-more">
-                        <span>[ </span>
-                        <a href="/talking-of-design/article/the-best-and-only-css-framework-you-need"> ادامه خبر </a>
-                        <span> ]</span>
-                    </div>
-                    <div class="dashed-hr"></div>
+                </div>
+                <p>
+                    @Html.Raw(item.Body)
+                    <strong style="float:left;margin:20px">@item.Author.FullName</strong>
+                </p>
+                <div class="news-read-more">
+                    <span>[ </span>
+                    <a href="@Url.Action("Details", "News", new { id = @item.Id })"> ادامه خبر </a>
+                    <span> ]</span>
+                </div>
+                <div class="dashed-hr"></div>
             </div>
         </div>
     }
@@ -139,36 +139,36 @@
             </ul>
         </nav>
     </div>
-    </div>
+</div>
 
-    <div class="col-lg-2">
-        <div class="row news-section">
-            <div class="ad-box">
-                <div class="well">
-                    <h1 class="text-center">تبلیغات</h1>
-                    <hr />
-                    <div style="text-align: center">
-                        <img src="/images/c8c57293d052b777855b86cafb348a4b.gif" width="100%" alt="Ad 1" />
-                    </div>
+<div class="col-lg-2">
+    <div class="row news-section">
+        <div class="ad-box">
+            <div class="well">
+                <h1 class="text-center">تبلیغات</h1>
+                <hr />
+                <div style="text-align: center">
+                    <img src="/images/c8c57293d052b777855b86cafb348a4b.gif" width="100%" alt="Ad 1" />
                 </div>
             </div>
-            <div class="ad-box">
-                <div class="well">
-                    <h1 class="text-center">تبلیغات</h1>
-                    <hr />
-                    <div style="text-align: center">
-                        <img src="/images/New_28142.gif" width="100%" alt="Ad 2" />
-                    </div>
+        </div>
+        <div class="ad-box">
+            <div class="well">
+                <h1 class="text-center">تبلیغات</h1>
+                <hr />
+                <div style="text-align: center">
+                    <img src="/images/New_28142.gif" width="100%" alt="Ad 2" />
                 </div>
             </div>
-            <div class="ad-box">
-                <div class="well">
-                    <h1 class="text-center">تبلیغات</h1>
-                    <hr />
-                    <div style="text-align: center">
-                        <img src="/images/New_28529.gif" width="100%" alt="Ad 3" />
-                    </div>
+        </div>
+        <div class="ad-box">
+            <div class="well">
+                <h1 class="text-center">تبلیغات</h1>
+                <hr />
+                <div style="text-align: center">
+                    <img src="/images/New_28529.gif" width="100%" alt="Ad 3" />
                 </div>
             </div>
         </div>
     </div>
+</div>
