@@ -6,56 +6,56 @@
 <div class="col-lg-8">
     <h2>اشعار</h2>
 
-    <p>
+<p>
         @Html.ActionLink("ایجاد شعر جدید", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Author.UserName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Body)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tags)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BookName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.VoiceURL)
-            </th>
-            <th></th>
-        </tr>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Poet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tags)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VoiceURL)
+        </th>
+        <th></th>
+    </tr>
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Author.UserName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Body)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Tags)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BookName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.VoiceURL)
-                </td>
-                <td>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Poet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tags)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VoiceURL)
+        </td>
+        <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                     @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
-            </tr>
-        }
+        </td>
+    </tr>
+}
 
-    </table>
+</table>
 
 
     <a class="col-lg-2 col-lg-offset-5 col-xs-12 btn btn-default" style="margin-top:3%;margin-bottom:3%" href="@Url.Action("Create", "News")">ایجاد خبر جدید</a>

@@ -18,9 +18,25 @@
         @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
+            @Html.LabelFor(model => model.Poet, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Poet)
+                @Html.ValidationMessageFor(model => model.Poet)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Body)
+                @Html.TextAreaFor(model => model.Body, new { @id = "poem-body" })
                 @Html.ValidationMessageFor(model => model.Body)
             </div>
         </div>
@@ -31,29 +47,13 @@
                 @Html.EditorFor(model => model.Tags)
                 @Html.ValidationMessageFor(model => model.Tags)
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.AuthorId, "AuthorId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("AuthorId", String.Empty)
-                @Html.ValidationMessageFor(model => model.AuthorId)
-            </div>
-        </div>
+        </div>  
 
         <div class="form-group">
             @Html.LabelFor(model => model.BookName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.BookName)
                 @Html.ValidationMessageFor(model => model.BookName)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.VoiceURL, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.VoiceURL)
-                @Html.ValidationMessageFor(model => model.VoiceURL)
             </div>
         </div>
 
@@ -71,4 +71,11 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/ckeditor")
+
+    <script>
+        $(function () {
+            $('#poem-body').ckeditor();
+        });
+    </script>
 }
