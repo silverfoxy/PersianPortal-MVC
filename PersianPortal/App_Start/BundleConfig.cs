@@ -25,6 +25,7 @@ namespace PersianPortal
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/News.js",
+                      "~/Scripts/Poem.js",
                       "~/Scripts/respond.js",
                      "~/Scripts/bootstrap-datepicker.min.js",
                      "~/Scripts/bootstrap-datepicker.fa.min.js",
