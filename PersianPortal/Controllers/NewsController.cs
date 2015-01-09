@@ -41,7 +41,7 @@ namespace PersianPortal.Controllers
         [Authorize(Roles = "Administrator,NewsAdmin")]
         public ActionResult Create()
         {
-            return View();
+            return View(new NewsViewModel());
         }
 
         // POST: /News/Create
@@ -50,32 +50,22 @@ namespace PersianPortal.Controllers
         [HttpPost]
         [Authorize(Roles = "Administrator,NewsAdmin")]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(string Title, string Body, string Tags, string Attachment, NewsType Type)
+        public ActionResult Create(NewsViewModel nvm)
         {
-            News news = new News()
-            {
-                Tags = Tags,
-                Body = Body,
-                Title = Title,
-                Type = Type,
-                PublishDate = DateTime.Now,
-                AuthorId = User.Identity.GetUserId()
-            };
-
-            if (ModelState.IsValid)
-            {
-                //potentially unsafe
-                var att = db.File.Where(f => f.URL.Contains(Attachment)).First();
-                if (att != null)
-                {
-                    news.AttachmentId = att.Id;
-                }
-                db.News.Add(news);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(news);
+            News news = nvm.News;
+            news.PublishDate = DateTime.Now;
+            int ntid = int.Parse(nvm.Type);
+            news.Type = db.NewsType.Where(nt => nt.Id == ntid).FirstOrDefault();
+            news.AuthorId = User.Identity.GetUserId();
+            var attachment = db.File.Where(f => f.URL.Contains(nvm.News.Attachment.URL)).FirstOrDefault();
+            if (attachment != null)
+                news.AttachmentId = attachment.Id;
+            else
+                news.Attachment = null;
+            db.News.Add(news);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+            //return View(news);
         }
 
         // GET: /News/Edit/5
@@ -96,7 +86,9 @@ namespace PersianPortal.Controllers
             {
                 return HttpNotFound();
             }
-            return View(news);
+            string type = news.Type.Type;
+            NewsViewModel nvm = new NewsViewModel() { News = news, Type = type};
+            return View(nvm);
         }
 
         // POST: /News/Edit/5
@@ -106,27 +98,26 @@ namespace PersianPortal.Controllers
         [HttpPost]
         [Authorize(Roles = "Administrator,NewsAdmin")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, string Tags, string AttachmentURL, DateTime PublishDate, NewsType Type, string Body, string Title)
+        public ActionResult Edit(News news)
         {
             var roles = db.Users.Find(User.Identity.GetUserId()).Roles.ToList();
-            if (roles.Select(r => r.Role.Name).Contains("Administrator") || db.News.Find(id).AuthorId == User.Identity.GetUserId())
+            var dbNews = db.News.Find(news.Id);
+            if (roles.Select(r => r.Role.Name).Contains("Administrator") || dbNews.AuthorId == User.Identity.GetUserId())
             {
-                if (ModelState.IsValid)
+                //if (ModelState.IsValid)
+                try
                 {
-                    News news = new News()
-                    {
-                        Id = id,
-                        Tags = Tags,
-                        AttachmentId = db.File.Where(f => AttachmentURL.Contains(f.URL)).FirstOrDefault().Id,
-                        Body = Body,
-                        Title = Title,
-                        Type = Type,
-                    };
-                    db.Entry(news).State = EntityState.Modified;
+                    dbNews.Body = news.Body;
+                    dbNews.Title = news.Title;
+                    dbNews.Tags = news.Tags;
+                    db.Entry(dbNews).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
-                return View(db.News.Find(id));
+                catch (Exception ex)
+                {
+                    return View(new NewsViewModel() { News = db.News.Find(news.Id) });
+                }
             }
             else
                 return View();

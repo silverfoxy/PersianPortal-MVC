@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace PersianPortal.Models
 {
@@ -17,13 +18,14 @@ namespace PersianPortal.Models
         public string Title { get; set; }
 
         [Required]
-        [Display(Name = "محتوا"), DataType(DataType.Html)]
+        [AllowHtml]
+        [Display(Name = "متن خبر"), DataType(DataType.Html)]
         public string Body { get; set; }
 
         [MaxLength(300, ErrorMessage = "حداکثر طول مجاز برای تگ 300 کاراکتر است."), Display(Name = "تگ ها")]
         public string Tags { get; set; }
 
-        public int AttachmentId { get; set; }
+        public int? AttachmentId { get; set; }
 
         [ForeignKey("AttachmentId")]
         public virtual File Attachment { get; set; }
@@ -34,8 +36,11 @@ namespace PersianPortal.Models
         public DateTime PublishDate { get; set; }
 
         [Required]
+        public int NewsTypeId { get; set; }
+
+        [ForeignKey("NewsTypeId")]
         [Display(Name = "گروه خبر")]
-        public NewsType Type { get; set; }
+        public virtual NewsType Type { get; set; }
 
         public string AuthorId { get; set; }
 

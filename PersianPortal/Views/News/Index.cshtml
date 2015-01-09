@@ -34,12 +34,12 @@
                     @Html.DisplayFor(modelItem => item.PublishDate)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Type)
+                    @Html.DisplayFor(modelItem => item.Type.Type)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                 </td>
             </tr>
         }
@@ -52,7 +52,7 @@
             <div class=" col-lg-8 col-lg-offset-2" style="padding: 10px 30px 20px 30px !important">
                 <div class="news-heading">
                     <h3>
-                        <a href="#">تحریم‌ها برداشته می شود/ بانک‌ها آماده باشند</a>
+                        <a href="#">@item.Title</a>
                         <span> : </span>
                         <span class="news-date">
                             <strong>@item.PublishDate.Day</strong>
@@ -62,12 +62,12 @@
                     </h3>
                 </div>
                 <p>
-                    @item.Body
-                    <strong style="float:left;margin:20px">@item.Author</strong>
+                    @Html.Raw(item.Body)
+                    <strong style="float:left;margin:20px">@item.Author.FullName</strong>
                 </p>
                 <div class="news-read-more">
                     <span>[ </span>
-                    <a href="/talking-of-design/article/the-best-and-only-css-framework-you-need"> ادامه خبر </a>
+                    <a href="@Url.Action("Details", "News", new { id = @item.Id })"> ادامه خبر </a>
                     <span> ]</span>
                 </div>
                 <div class="dashed-hr"></div>
