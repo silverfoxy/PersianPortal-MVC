@@ -32,15 +32,15 @@ namespace PersianPortal.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "User name")]
+        [Display(Name = "نام کاربری")]
         public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "رمز عبور")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "مرا به خاطر بسپار")]
         public bool RememberMe { get; set; }
     }
 
@@ -58,7 +58,7 @@ namespace PersianPortal.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "تکرار رمز عبور")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = "رمز عبور و تکرارش یکسان نیستند.")]
         public string ConfirmPassword { get; set; }
 
         [Required]

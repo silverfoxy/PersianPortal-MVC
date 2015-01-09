@@ -1,18 +1,17 @@
 ﻿@model PersianPortal.Models.NewsViewModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "ایجاد خبر جدید";
 }
 
-<h2>Create</h2>
+<h2>ایجاد خبر جدید</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>News</h4>
+
+    <div class="form-horizontal col-lg-10">
         <hr />
         @Html.ValidationSummary(true)
 
@@ -26,7 +25,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.News.Body, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-9">
                 @Html.TextAreaFor(model => model.News.Body, new { @id = "news-body" })
                 @Html.ValidationMessageFor(model => model.News.Body)
             </div>
@@ -59,17 +58,17 @@
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="col-md-offset-5 col-md-5">
+                <input type="submit" value="ایجاد خبر" class="col-lg-3 btn btn-default" />
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<div class="col-lg-2 col-lg-offset-10" style="margin-top:40px;margin-bottom:40px">
+    @Html.ActionLink("<< بازگشت به لیست خبر ها >>", "Index")
 </div>
-                
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/ckeditor")
