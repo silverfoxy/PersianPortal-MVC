@@ -28,6 +28,39 @@ namespace PersianPortal.Controllers
         public UserManager<User> UserManager { get; private set; }
 
         //
+        // GET: /Account/EditInfo
+        public ActionResult EditInfo()
+        {
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                return View((User)db.Users.Find(User.Identity.GetUserId()));
+            }
+        }
+
+        //
+        // POST: /Account/EditInfo
+        [HttpPost]
+        public ActionResult EditInfo(User user)
+        {
+            if (user.Id == User.Identity.GetUserId())
+            {
+                using (ApplicationDbContext db = new ApplicationDbContext())
+                {
+                    var dbUser = db.Users.Find(User.Identity.GetUserId());
+                    dbUser.Name = user.Name;
+                    dbUser.FamilyName = user.FamilyName;
+                    dbUser.DateOfBirth = user.DateOfBirth;
+                    dbUser.EmailAddress = user.EmailAddress;
+                    db.Entry(dbUser).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+                return RedirectToAction("EditInfo");
+            }
+            else
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+        }
+
+        //
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
