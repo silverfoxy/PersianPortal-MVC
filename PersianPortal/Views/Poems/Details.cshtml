@@ -54,16 +54,21 @@
                 @Html.DisplayNameFor(model => model.VoiceURL)
             </td>
             <td>
-                @Html.DisplayFor(model => model.VoiceURL)
+                @if (Model.VoiceURL != null)
+                { <h4>دارد</h4>}
+                else
+                {
+                    <h4>ندارد</h4>}
+                @*@Html.DisplayFor(model => model.VoiceURL)*@
             </td>
         </tr>
     </table>
 </div>
-<h3 class="col-lg-5 col-lg-offset-6"  style="margin-top:3%;margin-bottom:3%">
+<h3 class="col-lg-5 col-lg-offset-6" style="margin-top:3%;margin-bottom:3%">
     @Html.ActionLink("ویرایش", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("بازگشت به لیست شعر ها", "Index")
 </h3>
 
 
-    
+
 
