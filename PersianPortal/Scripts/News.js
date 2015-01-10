@@ -46,7 +46,8 @@ function HideOthersCu() {
     $(".sports").css("display", "none");
     $(".art").css("display", "none");
 }
-function showAll() {
+function showAllnews() {
+    console.log("kharrrrrr");
     $(".economics").css("display", "block");
     $(".politics").css("display", "block");
     $(".science").css("display", "block");
