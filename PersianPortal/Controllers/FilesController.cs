@@ -151,8 +151,11 @@ namespace PersianPortal.Controllers
             if (roles.Select(r => r.Role.Name).Contains("Administrator"))
                 file = db.File.Find(id);
             else
-                file = db.File.Where(f => f.Id == id && f.UploaderId == User.Identity.GetUserId()).FirstOrDefault();
-            if (file == null)
+            { 
+                var userId = User.Identity.GetUserId();
+                file = db.File.Where(f => f.Id == id && f.UploaderId == userId).FirstOrDefault();
+            }
+                if (file == null)
             {
                 return HttpNotFound();
             }

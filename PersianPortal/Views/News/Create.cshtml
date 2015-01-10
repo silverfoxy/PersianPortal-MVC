@@ -39,15 +39,19 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="row form-group" >
             @Html.LabelFor(model => model.News.Attachment.URL, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-2">
                 @{ Html.EnableClientValidation(false); }
                 @Html.EditorFor(model => model.News.Attachment.URL)
                 @{ Html.EnableClientValidation(true); }
                 @*@Html.ValidationMessageFor(model => model.News.Attachment.URL)*@
+            
             </div>
+            <a class="col-lg-2 btn btn-faal" target="_blank" href="@Url.Action("Upload", "Files")">بارگذاری فایل</a>
+
         </div>
+        
 
         <div class="form-group">
             @Html.LabelFor(model => model.News.Type, new { @class = "control-label col-md-2" })
