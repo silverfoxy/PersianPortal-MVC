@@ -59,7 +59,10 @@ namespace PersianPortal.Controllers
             news.AuthorId = User.Identity.GetUserId();
             var attachment = db.File.Where(f => f.URL.Contains(nvm.News.Attachment.URL)).FirstOrDefault();
             if (attachment != null)
+            {
                 news.AttachmentId = attachment.Id;
+                news.Attachment = attachment;
+            }
             else
                 news.Attachment = null;
             db.News.Add(news);

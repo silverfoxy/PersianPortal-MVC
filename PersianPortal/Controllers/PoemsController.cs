@@ -58,6 +58,11 @@ namespace PersianPortal.Controllers
                 poem.PoemTypeId = poem.PoemType.Id;
                 poem.PoemType = db.PoemType.Find(poem.PoemType.Id);
                 poem.AuthorId = User.Identity.GetUserId();
+                var attachment = db.File.Where(f => f.URL.Contains(poem.VoiceURL)).FirstOrDefault();
+                if (attachment != null)
+                    poem.VoiceURL = attachment.URL;
+                else
+                    poem.VoiceURL = null;
                 db.Poem.Add(poem);
                 db.SaveChanges();
                 return RedirectToAction("Index");
