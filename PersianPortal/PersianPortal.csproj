@@ -691,6 +691,7 @@
     <Content Include="Scripts\persianDatepicker.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Searchbox.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -759,7 +760,7 @@
     <Content Include="Views\Contents\Details.cshtml" />
     <Content Include="Views\Contents\Edit.cshtml" />
     <Content Include="Views\Contents\Index.cshtml" />
-    <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Search\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201501080617569_init.resx">

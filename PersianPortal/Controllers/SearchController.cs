@@ -9,6 +9,8 @@ namespace PersianPortal.Controllers
 {
     public class SearchController : Controller
     {
+        ApplicationDbContext db = new ApplicationDbContext();
+
         // GET: Search
         public ActionResult Index()
         {
@@ -19,11 +21,11 @@ namespace PersianPortal.Controllers
         public ActionResult Details(string id)
         {
             SearchViewModel svm = new SearchViewModel();
-            svm.Articles = svm.Articles.Where(a => a.Body.Contains(id) || a.Tags.Contains(id));
-            svm.Books = svm.Books.Where(b => b.Name.Contains(id) || b.Tags.Contains(id) || b.Body.Contains(id) || b.Publisher.Contains(id));
-            svm.Contents = svm.Contents.Where(c => c.Body.Contains(id) || c.Tags.Contains(id));
-            svm.News = svm.News.Where(n => n.Body.Contains(id) || n.Title.Contains(id) || n.Tags.Contains(id));
-            svm.Poems = svm.Poems.Where(p => p.Name.Contains(id) || p.Poet.Contains(id) || p.Tags.Contains(id) || p.Body.Contains(id));
+            svm.Articles = db.Article.Where(a => a.Body.Contains(id) || a.Tags.Contains(id));
+            svm.Books = db.Book.Where(b => b.Name.Contains(id) || b.Tags.Contains(id) || b.Body.Contains(id) || b.Publisher.Contains(id));
+            svm.Contents = db.Content.Where(c => c.Body.Contains(id) || c.Tags.Contains(id));
+            svm.News = db.News.Where(n => n.Body.Contains(id) || n.Title.Contains(id) || n.Tags.Contains(id));
+            svm.Poems = db.Poem.Where(p => p.Name.Contains(id) || p.Poet.Contains(id) || p.Tags.Contains(id) || p.Body.Contains(id));
             return View(svm);
         }
 

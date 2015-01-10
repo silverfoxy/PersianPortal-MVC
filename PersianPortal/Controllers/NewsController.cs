@@ -19,6 +19,16 @@ namespace PersianPortal.Controllers
         // GET: /News/
         public ActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                var roles = db.Users.Find(User.Identity.GetUserId()).Roles.ToList();
+                if (roles.Select(r => r.Role.Name).Contains("Administrator") || roles.Select(r => r.Role.Name).Contains("NewsAdmin"))
+                {
+                    ViewBag.CanViewNewsPanel = true;
+                }
+            }
+            else
+                ViewBag.CanViewNewsPanel = false;
             return View(db.News.ToList());
         }
 
@@ -52,23 +62,29 @@ namespace PersianPortal.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(NewsViewModel nvm)
         {
-            News news = nvm.News;
-            news.PublishDate = DateTime.Now;
-            int ntid = int.Parse(nvm.Type);
-            news.Type = db.NewsType.Where(nt => nt.Id == ntid).FirstOrDefault();
-            news.AuthorId = User.Identity.GetUserId();
-            var attachment = db.File.Where(f => f.URL.Contains(nvm.News.Attachment.URL)).FirstOrDefault();
-            if (attachment != null)
+            try
             {
-                news.AttachmentId = attachment.Id;
-                news.Attachment = attachment;
+                News news = nvm.News;
+                news.PublishDate = DateTime.Now;
+                int ntid = int.Parse(nvm.Type);
+                news.Type = db.NewsType.Where(nt => nt.Id == ntid).FirstOrDefault();
+                news.AuthorId = User.Identity.GetUserId();
+                var attachment = db.File.Where(f => f.URL.Contains(nvm.News.Attachment.URL)).FirstOrDefault();
+                if (attachment != null)
+                {
+                    news.AttachmentId = attachment.Id;
+                    news.Attachment = attachment;
+                }
+                else
+                    news.Attachment = null;
+                db.News.Add(news);
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
-            else
-                news.Attachment = null;
-            db.News.Add(news);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-            //return View(news);
+            catch (Exception)
+            {
+                return View(nvm);
+            }
         }
 
         // GET: /News/Edit/5
