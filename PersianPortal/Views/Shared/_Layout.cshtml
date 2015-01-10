@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
     <title> پورتال جامع پارسی زبانان </title>
 </head>
 <body>
@@ -17,48 +18,16 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            @using Microsoft.AspNet.Identity
-            @if (Request.IsAuthenticated)
-            {
-                <ul class="nav navbar-nav nav">
-                    <li> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span id="ShoppingCartNum" class="label label-warning pull-right" style="display:none"></span> &nbsp;&nbsp;&nbsp;&nbsp; <strong class="fa fa-fw fa-shopping-cart"></strong> سبد خرید  </a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><strong class="caret"></strong> حساب من <span class="fa fa-user"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a id="kk" href="#customizeModal" onclick="ShowCustomizeModal()" style="background-color:none"><span class="fa fa-wrench"></span> تنظیمات</a>
-                            </li>
-                            <li>
-                                <a href="#"><span class="fa fa-refresh"></span> به روز رسانی پروفایل</a>
-                            </li>
-                            <li>
-                                <a href="#"><span class="fa fa-briefcase"></span> پرداخت</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#"><span class="fa fa-sign-out"></span> خروج</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+            @Html.Partial("_LoginPartial")
 
-            }
-            else
-            {
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#" onclick="ShowSignUpModal()" style="font-size:larger"> ورود به پورتال <span class="fa fa-user"></span></a>
-                    </li>
-                </ul>
-                @*<ul class="nav navbar-nav navbar-right">
-                        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-                        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-                    </ul>*@
-            }
+            @*<ul class="nav navbar-nav navbar-right">
+                    <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                </ul>*@
 
             <div class="navbar-brand"><!--<img src="images/logo.png" alt="Your Logo">--> پورتال جامع پارسی زبانان</div>
             <div class="container">
-                <form class="navbar-form" id="search-box" action="/Search/Details/" method="GET">
+                <form class="navbar-form" id="search-box">
                     <div class="input-group" style="display:table">
                         <span class="input-group-btn">
                             <button type="submit" class="btn btn-default btn-search"><span class="fa fa-search"></span></button>
@@ -104,9 +73,9 @@
                             </ul>
                         </li>
 
-                        <li><a href="/Outlook Web Access.htm"><i class="fa fa-fw fa-envelope"></i>ایمیل<span class="label label-warning pull-left">4</span></a></li>
+                        <li><a href="@Url.Action("Index", "Mail")"><i class="fa fa-fw fa-envelope"></i>ایمیل<span class="label label-warning pull-left">4</span></a></li>
                         <li><a href="/Dictionary.html"><i class="fa fa-fw fa-fw fa-book"></i>لغت نامه</a></li>
-                        <li><a href="/OnlineShop.html"><i class="fa fa-fw fa-shopping-cart"></i>فروشگاه</a></li>
+                        <li><a href="@Url.Action("OnlineShop", "OnlineShop")"><i class="fa fa-fw fa-shopping-cart"></i>فروشگاه</a></li>
                         <li><a href="/SocialNetwork.html"><i class="fa fa-fw fa-users"></i>شبکه اجتماعی</a></li>
 
                     }
@@ -116,31 +85,29 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-comment"></i>ادبی</a>
                             <ul class="dropdown-menu" style="right:100%;top:0%">
                                 <li>
-                                    <a onclick="ShowSignUpModal()" href="#SignUp" style="background-color:none">اشعار</a>
+                                    <a href="@Url.Action("Login", "Account")" style="background-color:none">اشعار</a>
                                 </li>
                                 <li>
-                                    <a onclick="ShowSignUpModal()" href="#SignUp" style="background-color:none"> کتاب ها</a>
+                                    <a href="@Url.Action("Login", "Account")" style="background-color:none"> کتاب ها</a>
                                 </li>
                                 <li>
-                                    <a onclick="ShowSignUpModal()" href="#SignUp">متون</a>
+                                    <a href="@Url.Action("Login", "Account")">متون</a>
                                 </li>
                                 <li>
-                                    <a onclick="ShowSignUpModal()" href="#SignUp">مقالات</a>
+                                    <a href="@Url.Action("Login", "Account")">مقالات</a>
                                 </li>
                                 <li>
                                     <a href="#">فال حافظ</a>
                                 </li>
                             </ul>
                         </li>
-                        <li><a href="/GOnlineShop.html"><i class="fa fa-fw fa-shopping-cart"></i>فروشگاه</a></li>
-                        <li onclick="ShowSignUpModal()"><a href="#SignUp"><i class="fa fa-fw fa-users"></i>شبکه اجتماعی</a></li>
+                        <li><a href="@Url.Action("OnlineShop", "OnlineShop")"><i class="fa fa-fw fa-shopping-cart"></i>فروشگاه</a></li>
+                        <li><a href="@Url.Action("Login", "Account")"><i class="fa fa-fw fa-users"></i>شبکه اجتماعی</a></li>
                     }
                 </ul>
             </div>
             @RenderBody()
-
         </div>
-
         @*<footer>
                 <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
             </footer>*@
@@ -206,7 +173,7 @@
             Copyright © پورتال جامع پارسی زبانان دانشگاه شهید بهشتی 2014 <a href="#"></a>
         </div>
     </footer>
-    
+
     <div id="SignUp" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">

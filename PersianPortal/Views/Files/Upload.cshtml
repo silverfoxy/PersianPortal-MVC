@@ -4,7 +4,7 @@
     ViewBag.Title = "Upload";
 }
 
-<h2>Upload</h2>
+<h2>بارگذاری</h2>
 
 <span style="color: red">@ViewBag.error</span>
 
@@ -12,26 +12,27 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>File</h4>
+    <div class="form-horizontal col-lg-10">
+        <h4>فایل</h4>
         <hr />
         <div class="form-group">
-            <label class="control-label col-md-2" for="file">Upload File:</label>
+            <label class="control-label col-md-2" for="file">فایل بارگذاری:</label>
             <div class="col-md-10">
-                <input type="file" name="file" id="file" /><br><br>
+                <input class="btn btn-success" type="file" name="file" id="file" /><br><br>
             </div>
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Upload Image" />
+                <div class="col-md-offset-4 col-md-8">
+                    <input class="btn btn-faal" type="submit" value="Upload Image" />
                 </div>
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<div class="col-lg-2 col-lg-offset-10">
+    @Html.ActionLink("<< بازگشت به لیست فایل ها >>", "Index")
 </div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

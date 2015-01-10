@@ -46,11 +46,33 @@ function HideOthersCu() {
     $(".sports").css("display", "none");
     $(".art").css("display", "none");
 }
-function showAll() {
+function showAllnews() {
+    console.log("kharrrrrr");
     $(".economics").css("display", "block");
     $(".politics").css("display", "block");
     $(".science").css("display", "block");
     $(".cultural").css("display", "block");
     $(".sports").css("display", "block");
     $(".art").css("display", "block");
+}
+
+
+function spellCheck() {
+    if ($("#searchInput").val() == "سلنام" || $("#searchInput").val() == "اسعار" || $("#searchInput").val() == "احبار")
+        $("#searchInput").css("color", "blue");
+    if ($("#searchInput").val() == "سسس" || $("#searchInput").val() == "..." || $("#searchInput").val() == "پپ")
+        $("#searchInput").css("color", "red");
+    if ($("#searchInput").val() == "")
+        $("#searchInput").css("color", "black");
+}
+var count = 1;
+function ShowResult() {
+    if ($("#dictionary").val() != "")
+        $("#searchResult").css("display", "block");
+}
+
+function AddToCart() {
+    $("#ShoppingCartNum").css("display", "block");
+    $("#ShoppingCartNum").html(count);
+    count++;
 }

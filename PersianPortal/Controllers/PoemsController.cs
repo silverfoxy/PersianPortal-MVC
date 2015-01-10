@@ -97,8 +97,11 @@ namespace PersianPortal.Controllers
             if (roles.Select(r => r.Role.Name).Contains("Administrator"))
                 poem = db.Poem.Find(id);
             else
-                poem = db.Poem.Where(f => f.Id == id && f.AuthorId == User.Identity.GetUserId()).FirstOrDefault();
-            if (poem == null)
+            {
+                var userId=User.Identity.GetUserId();
+                poem = db.Poem.Where(f => f.Id == id && f.AuthorId == userId).FirstOrDefault();
+            }
+                if (poem == null)
             {
                 return HttpNotFound();
             }

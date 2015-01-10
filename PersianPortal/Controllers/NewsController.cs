@@ -64,22 +64,23 @@ namespace PersianPortal.Controllers
         {
             try
             {
-                News news = nvm.News;
-                news.PublishDate = DateTime.Now;
-                int ntid = int.Parse(nvm.Type);
-                news.Type = db.NewsType.Where(nt => nt.Id == ntid).FirstOrDefault();
-                news.AuthorId = User.Identity.GetUserId();
-                var attachment = db.File.Where(f => f.URL.Contains(nvm.News.Attachment.URL)).FirstOrDefault();
-                if (attachment != null)
-                {
-                    news.AttachmentId = attachment.Id;
-                    news.Attachment = attachment;
-                }
-                else
-                    news.Attachment = null;
-                db.News.Add(news);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+            News news = nvm.News;
+            news.PublishDate = DateTime.Now;
+            int ntid = int.Parse(nvm.Type);
+            news.Type = db.NewsType.Where(nt => nt.Id == ntid).FirstOrDefault();
+            news.AuthorId = User.Identity.GetUserId();
+            news.Author = db.Users.Find(news.AuthorId);
+            var attachment = db.File.Where(f => f.URL.Contains(nvm.News.Attachment.URL)).FirstOrDefault();
+            if (attachment != null)
+            {
+                news.AttachmentId = attachment.Id;
+                news.Attachment = attachment;
+            }
+            else
+                news.Attachment = null;
+            db.News.Add(news);
+            db.SaveChanges();
+            return RedirectToAction("Index");
             }
             catch (Exception)
             {
@@ -109,7 +110,7 @@ namespace PersianPortal.Controllers
                 return HttpNotFound();
             }
             string type = news.Type.Type;
-            NewsViewModel nvm = new NewsViewModel() { News = news, Type = type};
+            NewsViewModel nvm = new NewsViewModel() { News = news, Type = type };
             return View(nvm);
         }
 
@@ -158,7 +159,10 @@ namespace PersianPortal.Controllers
             if (roles.Select(r => r.Role.Name).Contains("Administrator"))
                 news = db.News.Find(id);
             else
-                news = db.News.Where(f => f.Id == id && f.AuthorId == User.Identity.GetUserId()).FirstOrDefault();
+            {
+                var userId = User.Identity.GetUserId();
+                news = db.News.Where(f => f.Id == id && f.AuthorId == userId).FirstOrDefault();
+            }
             if (news == null)
             {
                 return HttpNotFound();

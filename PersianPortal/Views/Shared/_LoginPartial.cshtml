@@ -3,20 +3,51 @@
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
+        <ul class="nav navbar-nav nav">
+            <li> <a href="@Url.Action("Shopping", "OnlineShop")" class="dropdown-toggle" data-toggle="dropdown"><span id="ShoppingCartNum" class="label label-warning pull-right" style="display:none"></span> &nbsp;&nbsp;&nbsp;&nbsp; <strong class="fa fa-fw fa-shopping-cart"></strong> سبد خرید  </a></li>
+            <li class="dropdown">
+                <a href="" class="dropdown-toggle" data-toggle="dropdown"><strong class="caret"></strong> حساب من <span class="fa fa-user"></span></a>
+                <ul class="dropdown-menu" style="left: 0px !important; right: auto !important">
+                    <li>
+                        <a id="kk" href="#customizeModal" onclick="ShowCustomizeModal()" style="background-color:none"><span class="fa fa-wrench"></span> تنظیمات</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Manage", "Account", routeValues: null)"><span class="fa fa-lock"></span> تغییر رمز عبور</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Manage", "Account", routeValues: null)"><span class="fa fa-refresh"></span> به روز رسانی پروفایل</a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="fa fa-briefcase"></span> پرداخت</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()"><span class="fa fa-sign-out"></span>خروج</a></li>
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+                </ul>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li style="padding:15px 10px">
+                @User.Identity.Name 
+                خوش آمدید !
+                @*@Html.ActionLink(User.Identity.Name + "خوش آمدید " + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })*@
+            </li>
+        </ul>
     }
+
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+
+
+    <ul class="nav navbar-nav">
+        
+        <li>
+            <a href="@Url.Action("Register", "Account", routeValues: null)" style="font-size:larger"> ثبت نام <span class="fa fa-lock"></span></a>
+        </li>
+        <li>
+            <a href="@Url.Action("Login", "Account", routeValues: null)" style="font-size:larger"> ورود به پورتال <span class="fa fa-user"></span></a>
+        </li>
     </ul>
 }

@@ -6,9 +6,12 @@
 <title>اخبار | پورتال جامع پارسی زبانان</title>
 <div class="col-lg-8">
     <h2>تازه ترین خبرها</h2>
-    @if (ViewBag.CanViewNewsPanel)
-    {
-        <table class="table">
+
+    @using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+            {
+    @Html.ValidationSummary(true)
+    <table class="table">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Id)
@@ -54,9 +57,10 @@
             </tr>
         }
     </table>
+}
+    <a class="col-lg-2 col-lg-offset-5 col-xs-12 btn btn-default" style="margin-top:3%;margin-bottom:3%" href="@Url.Action("Create", "News")">ایجاد خبر جدید</a>
 
-        <a class="col-lg-2 col-lg-offset-5 col-xs-12 btn btn-default" style="margin-top:3%;margin-bottom:3%" href="@Url.Action("Create", "News")">ایجاد خبر جدید</a>
-        }
+
         <div class="col-lg-12 switch-toggle switch-7 well" style="direction:ltr">
         <input id="culturalb" name="view" type="radio">
         <label for="culturalb" onclick="HideOthersCu()">فرهنگی</label>
@@ -71,7 +75,7 @@
         <input id="scienceb" name="view" type="radio" checked>
         <label for="scienceb" onclick="HideOthersSc()">علمی</label>
         <input id="all" name="view" type="radio" checked>
-        <label for="all" onclick="showAll()">همه</label>
+        <label for="all" onclick="showAllnews()">همه</label>
         <a class="btn btn-primary"></a>
     </div>
 
@@ -102,7 +106,7 @@
                 break;
         }
         <div class="row news-box @id">
-            <div class=" col-lg-8 col-lg-offset-2" style="padding: 10px 30px 20px 30px !important">
+            <div class=" col-lg-12" style="padding: 10px 30px 20px 30px !important">
                 <div class="news-heading">
                     <h3>
                         <a href="#">@item.Title</a>

@@ -27,7 +27,10 @@ namespace PersianPortal.Controllers
             if (roles.Select(r => r.Role.Name).Contains("Administrator"))
                 return View(db.File.ToList());
             else
-                return View(db.File.Where(f => f.UploaderId == User.Identity.GetUserId()).ToList());
+            {
+                var userId = User.Identity.GetUserId();
+                return View(db.File.Where(f => f.UploaderId == userId).ToList());
+            }
         }
 
         // GET: Files/Details/5
@@ -43,7 +46,10 @@ namespace PersianPortal.Controllers
             if (roles.Select(r => r.Role.Name).Contains("Administrator"))
                 file = db.File.Find(id);
             else
-                file = db.File.Where(f => f.Id == id && f.UploaderId == User.Identity.GetUserId()).FirstOrDefault();
+            {
+                var usrid = User.Identity.GetUserId();
+                file = db.File.Where(f => f.Id == id && f.UploaderId == usrid).FirstOrDefault();
+            }
             if (file == null)
             {
                 return HttpNotFound();
@@ -145,8 +151,11 @@ namespace PersianPortal.Controllers
             if (roles.Select(r => r.Role.Name).Contains("Administrator"))
                 file = db.File.Find(id);
             else
-                file = db.File.Where(f => f.Id == id && f.UploaderId == User.Identity.GetUserId()).FirstOrDefault();
-            if (file == null)
+            { 
+                var userId = User.Identity.GetUserId();
+                file = db.File.Where(f => f.Id == id && f.UploaderId == userId).FirstOrDefault();
+            }
+                if (file == null)
             {
                 return HttpNotFound();
             }

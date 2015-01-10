@@ -4,12 +4,14 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-@Html.ActionLink("Upload Another File", "Upload")
+<h2>جزییات بارگذاری</h2>
+<div class="btn btn-default col-lg-offset-4">
+    @Html.ActionLink("بارگذاری فایل جدید", "Upload")
+</div>
 <div>
-    <h4>File</h4>
+    <h4>فایل</h4>
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal col-lg-9">
         <dt>
             @Html.DisplayNameFor(model => model.Extension)
         </dt>
@@ -28,7 +30,7 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div class="col-lg-4 col-lg-offset-5" style="margin-bottom:3%;margin-top:3%">
+    @Html.ActionLink("ویرایش", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("بازگشت به لیست فایل ها", "Index")
+</div>

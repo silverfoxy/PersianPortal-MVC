@@ -1,24 +1,24 @@
 ﻿@model PersianPortal.Models.NewsViewModel
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "ویرایش";
 }
 
-<h2>Edit</h2>
+<h2>ویرایش</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>News</h4>
+    <div class="form-horizontal col-lg-10">
+        <h4>اخبار</h4>
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.News.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.News.Title, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.News.Title, new { @class = "control-label col-md-1" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.News.Title)
                 @Html.ValidationMessageFor(model => model.News.Title)
@@ -26,15 +26,15 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.News.Body, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.News.Body, new { @class = "control-label col-md-1" })
             <div class="col-md-10">
                 @Html.TextAreaFor(model => model.News.Body, new { @id = "news-body" })
                 @Html.ValidationMessageFor(model => model.News.Body)
             </div>
         </div>
-        
+
         <div class="form-group">
-            @Html.LabelFor(model => model.News.Tags, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.News.Tags, new { @class = "control-label col-md-1" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.News.Tags)
                 @Html.ValidationMessageFor(model => model.News.Tags)
@@ -43,15 +43,15 @@
 
         @Html.HiddenFor(model => model.News.Attachment.URL)
         @*<div class="form-group">
-            @Html.LabelFor(model => model.News.Attachment.URL, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.News.Attachment.URL)
-                @Html.ValidationMessageFor(model => model.News.Attachment.URL)
-            </div>
-        </div>*@
+                @Html.LabelFor(model => model.News.Attachment.URL, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.News.Attachment.URL)
+                    @Html.ValidationMessageFor(model => model.News.Attachment.URL)
+                </div>
+            </div>*@
 
         <div class="form-group">
-            @Html.LabelFor(model => model.News.PublishDate, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.News.PublishDate, new { @class = "control-label col-md-1" })
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.News.PublishDate, new { disabled = "disabled" })
                 @Html.ValidationMessageFor(model => model.News.PublishDate)
@@ -59,23 +59,23 @@
         </div>
 
         @*<div class="form-group">
-            @Html.LabelFor(model => model.Type, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Type, new SelectList(Model.NewsTypes, "Id", "Type", "علمی"))
-                @Html.ValidationMessageFor(model => model.Type)
-            </div>
-        </div>*@
+                @Html.LabelFor(model => model.Type, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Type, new SelectList(Model.NewsTypes, "Id", "Type", "علمی"))
+                    @Html.ValidationMessageFor(model => model.Type)
+                </div>
+            </div>*@
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+            <div class="col-md-offset-5 col-md-5">
+                <input type="submit" value="ویرایش خبر" class="col-lg-3 btn btn-default" />
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<div class="col-lg-2 col-lg-offset-10" style="margin-top:40px;margin-bottom:40px">
+    @Html.ActionLink("<< بازگشت به لیست خبر ها >>", "Index")
 </div>
 
 @section Scripts {
