@@ -166,8 +166,10 @@
     <Compile Include="Controllers\ContentsController.cs" />
     <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MailController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\NewsTypesController.cs" />
+    <Compile Include="Controllers\OnlineShopController.cs" />
     <Compile Include="Controllers\PoemsController.cs" />
     <Compile Include="Controllers\PoemTypesController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
@@ -249,6 +251,7 @@
     <Content Include="Images\taar.jpg" />
     <Content Include="Images\website-background-pattern.jpg" />
     <Content Include="Images\__20120513_1748875240.gif" />
+    <Content Include="Scripts\backstretch-jquery.js" />
     <Content Include="Scripts\bootstrap-datepicker.fa.min.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -760,6 +763,12 @@
     <Content Include="Views\Contents\Edit.cshtml" />
     <Content Include="Views\Contents\Index.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Mail\Index.cshtml" />
+    <Content Include="Views\OnlineShop\OnlineShop.cshtml" />
+    <Content Include="Views\OnlineShop\Shopping.cshtml" />
+    <Content Include="Views\OnlineShop\Payment.cshtml" />
+    <Content Include="Views\OnlineShop\ReviewInfo.cshtml" />
+    <Content Include="Views\OnlineShop\PaymentInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201501080617569_init.resx">

@@ -477,14 +477,14 @@ body {
 }
 
 .carousel-control.left {
-    background:none;
-  background-color: none;
+    background:none !important;
+  background-color: none  !important;
   }
 
 .carousel-control.right {
   right: 0;
   left: auto;
-  background:none;
+  background:none  !important;
 
 }
 
