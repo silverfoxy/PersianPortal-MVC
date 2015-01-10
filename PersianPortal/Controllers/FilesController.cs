@@ -27,7 +27,10 @@ namespace PersianPortal.Controllers
             if (roles.Select(r => r.Role.Name).Contains("Administrator"))
                 return View(db.File.ToList());
             else
-                return View(db.File.Where(f => f.UploaderId == User.Identity.GetUserId()).ToList());
+            {
+                var userId = User.Identity.GetUserId();
+                return View(db.File.Where(f => f.UploaderId == userId).ToList());
+            }
         }
 
         // GET: Files/Details/5
