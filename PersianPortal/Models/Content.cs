@@ -13,6 +13,10 @@ namespace PersianPortal.Models
         public int Id { get; set; }
 
         [Required]
+        [Display(Name = "عنوان"), MaxLength(200, ErrorMessage = "حداکثر طول عنوان باید 200 کاراکتر باشد.")]
+        public string Title { get; set; }
+
+        [Required]
         [Display(Name = "محتوا"), DataType(DataType.Html)]
         public string Body { get; set; }
 

@@ -7,26 +7,15 @@ namespace PersianPortal.Models
 {
     public class SearchViewModel
     {
-        public IQueryable<Article> Articles { get; set; }
+        public IEnumerable<Article> Articles { get; set; }
 
-        public IQueryable<Book> Books { get; set; }
+        public IEnumerable<Book> Books { get; set; }
 
-        public IQueryable<Content> Contents { get; set; }
+        public IEnumerable<Content> Contents { get; set; }
 
-        public IQueryable<News> News { get; set; }
+        public IEnumerable<News> News { get; set; }
 
-        public IQueryable<Poem> Poems { get; set; }
+        public IEnumerable<Poem> Poems { get; set; }
 
-        public SearchViewModel()
-        {
-            using (ApplicationDbContext db = new ApplicationDbContext())
-            {
-                Articles = db.Article;
-                Books = db.Book;
-                Contents = db.Content;
-                News = db.News;
-                Poems = db.Poem;
-            }
-        }
     }
 }

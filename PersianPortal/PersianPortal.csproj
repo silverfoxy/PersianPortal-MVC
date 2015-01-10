@@ -759,6 +759,7 @@
     <Content Include="Views\Contents\Details.cshtml" />
     <Content Include="Views\Contents\Edit.cshtml" />
     <Content Include="Views\Contents\Index.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201501080617569_init.resx">
@@ -771,7 +772,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Uploads\" />
-    <Folder Include="Views\Search\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

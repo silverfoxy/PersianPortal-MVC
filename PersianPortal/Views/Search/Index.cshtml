@@ -1,0 +1,240 @@
+﻿@model PersianPortal.Models.SearchViewModel
+
+@{
+    ViewBag.Title = "جستجو";
+}
+<div class="col-lg-8">
+    <h2>نتایج جستجو</h2>
+    @if (Model.Articles.Count() > 0)
+    {
+        <h3>مقاله ها</h3>
+        <hr />
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Articles.First().Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Articles.First().Magazine)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Articles.First().PublishDate)
+                </th>
+            </tr>
+
+            @foreach (var item in Model.Articles)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Magazine)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PublishDate)
+                    </td>
+                </tr>
+            }
+
+        </table>
+    }
+
+    @if (Model.Books.Count() > 0)
+    {
+        <h3>کتاب ها</h3>
+        <hr />
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Books.First().Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Books.First().Publisher)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Books.First().PublishDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Books.First().Version)
+                </th>
+            </tr>
+
+            @foreach (var item in Model.Books)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Publisher)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PublishDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PublishDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Version)
+                    </td>
+                </tr>
+            }
+
+        </table>
+    }
+
+    @if (Model.Contents.Count() > 0)
+    {
+        <h3>متون</h3>
+        <hr />
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Contents.First().)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Articles.First().Magazine)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Articles.First().PublishDate)
+                </th>
+            </tr>
+
+            @foreach (var item in Model.Articles)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Magazine)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PublishDate)
+                    </td>
+                </tr>
+            }
+
+        </table>
+    }
+
+    @if (Model.Articles.Count() > 0)
+    {
+        <h3>مقاله ها</h3>
+        <hr />
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Articles.First().Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Articles.First().Magazine)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Articles.First().PublishDate)
+                </th>
+            </tr>
+
+            @foreach (var item in Model.Articles)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Magazine)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PublishDate)
+                    </td>
+                </tr>
+            }
+
+        </table>
+    }
+
+    @if (Model.Articles.Count() > 0)
+    {
+        <h3>مقاله ها</h3>
+        <hr />
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Articles.First().Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Articles.First().Magazine)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Articles.First().PublishDate)
+                </th>
+            </tr>
+
+            @foreach (var item in Model.Articles)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Magazine)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PublishDate)
+                    </td>
+                </tr>
+            }
+
+        </table>
+    }
+
+
+    
+    <div class="row text-center col-lg-12">
+        <nav>
+            <ul class="pagination">
+                <li class="disabled"><a href="#"><span aria-hidden="true"></span><span class="sr-only"><span class="arrows">&laquo;</span>قبلی</span></a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">...</a></li>
+                <li><a href="#"><span aria-hidden="true"></span><span class="sr-only">بعدی<span class="arrows">&raquo;</span></span></a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<div class="col-lg-2">
+    <div class="row news-section">
+        <div class="ad-box">
+            <div class="well">
+                <h1 class="text-center">تبلیغات</h1>
+                <hr />
+                <div style="text-align: center">
+                    <img src="/images/c8c57293d052b777855b86cafb348a4b.gif" width="100%" alt="Ad 1" />
+                </div>
+            </div>
+        </div>
+        <div class="ad-box">
+            <div class="well">
+                <h1 class="text-center">تبلیغات</h1>
+                <hr />
+                <div style="text-align: center">
+                    <img src="/images/New_28142.gif" width="100%" alt="Ad 2" />
+                </div>
+            </div>
+        </div>
+        <div class="ad-box">
+            <div class="well">
+                <h1 class="text-center">تبلیغات</h1>
+                <hr />
+                <div style="text-align: center">
+                    <img src="/images/New_28529.gif" width="100%" alt="Ad 3" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

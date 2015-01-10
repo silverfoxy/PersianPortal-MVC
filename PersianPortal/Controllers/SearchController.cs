@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PersianPortal.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,9 +16,15 @@ namespace PersianPortal.Controllers
         }
 
         // GET: Search/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
-            return View();
+            SearchViewModel svm = new SearchViewModel();
+            svm.Articles = svm.Articles.Where(a => a.Body.Contains(id) || a.Tags.Contains(id));
+            svm.Books = svm.Books.Where(b => b.Name.Contains(id) || b.Tags.Contains(id) || b.Body.Contains(id) || b.Publisher.Contains(id));
+            svm.Contents = svm.Contents.Where(c => c.Body.Contains(id) || c.Tags.Contains(id));
+            svm.News = svm.News.Where(n => n.Body.Contains(id) || n.Title.Contains(id) || n.Tags.Contains(id));
+            svm.Poems = svm.Poems.Where(p => p.Name.Contains(id) || p.Poet.Contains(id) || p.Tags.Contains(id) || p.Body.Contains(id));
+            return View(svm);
         }
 
         // GET: Search/Create
