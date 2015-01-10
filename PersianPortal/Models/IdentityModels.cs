@@ -59,5 +59,6 @@ namespace PersianPortal.Models
             : base("DefaultConnection")
         {
         }
+
     }
 }
