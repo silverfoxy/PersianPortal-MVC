@@ -1,9 +1,9 @@
-﻿@model PersianPortal.Models.User
+﻿@model PersianPortal.Models.UserRoleViewModel
 @{
     ViewBag.Title = "RoleSet";
 }
 
-<h2>RoleSet</h2>
+<h2>تعیین سطح دسترسی کاربران</h2>
 
 @using (Html.BeginForm())
 {
@@ -16,14 +16,14 @@
         <div class="form-group">
             @Html.Label("کاربر", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.UserName, (SelectList)ViewBag.Users)
+                @Html.DropDownListFor(model => model.user.Id, (SelectList)ViewBag.user)
             </div>
         </div>
         
         <div class="form-group">
             @Html.Label("دسترسی", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*@Html.DropDownListFor(model1 => model1.Roles, (SelectList)ViewBag.Roles)*@
+                @Html.DropDownListFor(model => model.role.Id, (SelectList)ViewBag.role)
             </div>
         </div>
 

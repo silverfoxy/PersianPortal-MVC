@@ -1,8 +1,15 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace PersianPortal.Models
 {
+    public class UserRoleViewModel
+    {
+        public Role role { get; set; }
+        public User user { get; set; }
+    }
+
     public class ExternalLoginConfirmationViewModel
     {
         [Required]

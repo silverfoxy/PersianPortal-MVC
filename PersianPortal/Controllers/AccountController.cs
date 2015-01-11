@@ -84,20 +84,30 @@ namespace PersianPortal.Controllers
         [Authorize(Roles = "Administrator")]
         public ActionResult RoleSet()
         {
-            ViewBag.Users = new SelectList(db.Users, "Id", "UserName");
-            ViewBag.Roles = new SelectList(db.Roles,"Id","title");
-            return View();
+            ViewBag.user = new SelectList(db.Users, "Id", "UserName");
+            ViewBag.role = new SelectList(db.Roles,"Id","title");
+            return View(new UserRoleViewModel());
         }
 
         //
         // POST: /Account/RoleSet
         [HttpPost]
         [Authorize(Roles = "Administrator")]
-        public ActionResult RoleSet(User user, Role role)
+        public ActionResult RoleSet(UserRoleViewModel userRole)
         {
-            UserManager<IdentityUser> userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
-            userManager.AddToRole(user.Id, role.Id);
-            return RedirectToAction("RoleSet");
+            try
+            {
+                User user = userRole.user;
+                Role role = userRole.role;
+                UserManager<IdentityUser> userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
+                System.Web.Security.Roles.AddUserToRole(user.Id, role.Id);
+                //userManager.AddToRole(user.Id, role.Name);
+                return RedirectToAction("RoleSet");
+            }
+            catch (Exception ex)
+            {
+                return View();
+            }
         }
 
         //

@@ -16,7 +16,8 @@ namespace PersianPortal.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                var roles = db.Users.Find(User.Identity.GetUserId()).Roles.ToList();
+                var userId = User.Identity.GetUserId();
+                var roles = db.Users.Find(userId).Roles.ToList();
                 if (roles.Select(r => r.Role.Name).Contains("Administrator"))
                 {
                     ViewBag.CanViewNewsPanel = true;
