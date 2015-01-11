@@ -4,72 +4,149 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>کتاب ها</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Author.UserName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Body)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tags)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PublishDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Version)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Publisher)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PDFURL)
-        </th>
-        <th></th>
-    </tr>
+<div class="col-lg-8">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Author.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Body)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tags)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PublishDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Version)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Publisher)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PDFURL)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @if (ViewBag.CanViewNewsPanel)
+    {
+        @Html.ValidationSummary(true)
 
-</table>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Author.UserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Body)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tags)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PublishDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Version)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Publisher)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PDFId)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Author.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Body)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tags)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PublishDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Version)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Publisher)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PDF)
+                    </td>
+                    <td>
+                        @Html.ActionLink("ویرایش", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("مشاهده جزییات", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("حذف", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+
+        </table>
+        
+        <a class="col-lg-2 col-lg-offset-5 col-xs-12 btn btn-default" style="margin-top:3%;margin-bottom:3%" href="@Url.Action("Create", "Books")">ایجاد کتاب جدید</a>
+
+    }
+    @foreach (var item in Model)
+    {
+        <div class="row news-box">
+            <div class=" col-lg-12" style="padding: 10px 30px 20px 30px !important">
+                <div class="news-heading">
+                    <h3>
+                        <a href="#">@item.Name</a>
+                        <span> : </span>
+                        <span class="news-date">
+                            <strong>@item.PublishDate.Day  /  @item.PublishDate.Month  /</strong>
+                            <strong>@item.PublishDate.Year</strong>
+                        </span>
+                    </h3>
+                </div>
+                <h4><strong>نسخه : </strong>@item.Version</h4>
+                <h4><strong>ناشر : </strong>@item.Publisher</h4>
+                <p style="font-family:'B Nazanin';text-align:center">
+                    @Html.Raw(item.Body)
+                    <strong style="float:left;margin:20px">@item.Author.FullName</strong>
+                </p>
+                <div class="dashed-hr"></div>
+            </div>
+        </div>
+    }
+    <div class="row text-center col-lg-12">
+        <nav>
+            <ul class="pagination">
+                <li class="disabled"><a href="#"><span aria-hidden="true"></span><span class="sr-only"><span class="arrows">&laquo;</span>قبلی</span></a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">...</a></li>
+                <li><a href="#"><span aria-hidden="true"></span><span class="sr-only">بعدی<span class="arrows">&raquo;</span></span></a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<div class="col-lg-2">
+    <div class="row news-section">
+        <div class="ad-box">
+            <div class="well">
+                <h1 class="text-center">تبلیغات</h1>
+                <hr />
+                <div style="text-align: center">
+                    <img src="/images/c8c57293d052b777855b86cafb348a4b.gif" width="100%" alt="Ad 1" />
+                </div>
+            </div>
+        </div>
+        <div class="ad-box">
+            <div class="well">
+                <h1 class="text-center">تبلیغات</h1>
+                <hr />
+                <div style="text-align: center">
+                    <img src="/images/New_28142.gif" width="100%" alt="Ad 2" />
+                </div>
+            </div>
+        </div>
+        <div class="ad-box">
+            <div class="well">
+                <h1 class="text-center">تبلیغات</h1>
+                <hr />
+                <div style="text-align: center">
+                    <img src="/images/New_28529.gif" width="100%" alt="Ad 3" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

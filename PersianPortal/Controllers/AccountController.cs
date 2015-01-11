@@ -100,7 +100,7 @@ namespace PersianPortal.Controllers
                 User user = userRole.user;
                 Role role = userRole.role;
                 UserManager<IdentityUser> userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
-                System.Web.Security.Roles.AddUserToRole(user.Name, role.Name);
+                System.Web.Security.Roles.AddUserToRole(user.UserName, role.Name);
                 //userManager.AddToRole(user.Id, role.Name);
                 return RedirectToAction("RoleSet");
             }
