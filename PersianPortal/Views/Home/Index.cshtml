@@ -14,7 +14,7 @@
 @if (ViewBag.CanViewNewsPanel)
             {
     @Html.ValidationSummary(true)
-    <a class="btn btn-primary col-lg-3 col-lg-offset-3" style="margin-bottom:1%" href="@Url.Action("ResetPassword", "Account")"><i class="fa fa-fw fa-unlock"></i>تعیین سطح دسترسی کاربران</a>
+    <a class="btn btn-primary col-lg-3 col-lg-offset-3" style="margin-bottom:1%" href="@Url.Action("RoleSet", "Account")"><i class="fa fa-fw fa-unlock"></i>تعیین سطح دسترسی کاربران</a>
 <a class="btn btn-faal col-lg-3 col-lg-offset-3" href="@Url.Action("ResetPassword", "Account")"><i class="fa fa-fw fa-lock"></i>تغییر رمز عبور کاربران</a>
 }
 <div class="col-lg-10">

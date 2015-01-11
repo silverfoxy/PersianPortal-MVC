@@ -1,4 +1,4 @@
-﻿
+﻿@model PersianPortal.Models.User
 @{
     ViewBag.Title = "RoleSet";
 }
@@ -13,43 +13,22 @@
         <h4>کاربر</h4>
         <hr />
         @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.Id)
         <div class="form-group">
-            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("کاربر", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.UserName, new { disabled = "disabled" })
+                @Html.DropDownListFor(model => model.UserName, (SelectList)ViewBag.Users)
             </div>
         </div>
+
         <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("دسترسی", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Name)
-                @Html.ValidationMessageFor(model => model.Name)
+                @Html.DropDownListFor(model => model.Roles, (SelectList)ViewBag.Roles)
             </div>
         </div>
+
         <div class="form-group">
-            @Html.LabelFor(model => model.FamilyName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FamilyName)
-                @Html.ValidationMessageFor(model => model.FamilyName)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DateOfBirth)
-                @Html.ValidationMessageFor(model => model.DateOfBirth)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.EmailAddress, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.EmailAddress)
-                @Html.ValidationMessageFor(model => model.EmailAddress)
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-4 col-md-6" style="margin-top:3%">
+            <div class="col-md-offset-5 col-md-5">
                 <input type="submit" value="ثبت" class="btn btn-success" />
             </div>
         </div>

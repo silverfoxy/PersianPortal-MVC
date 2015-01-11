@@ -22,7 +22,7 @@ namespace PersianPortal.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 var roles = db.Users.Find(User.Identity.GetUserId()).Roles.ToList();
-                if (roles.Select(r => r.Role.Name).Contains("Administrator") || roles.Select(r => r.Role.Name).Contains("NewsAdmin"))
+                if (roles.Select(r => r.Role.Name).Contains("Administrator") || roles.Select(r => r.Role.Name).Contains("PoemsAdmin"))
                 {
                     ViewBag.CanViewNewsPanel = true;
                 }
