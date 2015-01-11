@@ -3,5 +3,106 @@
     ViewBag.Title = "Payment";
 }
 
-<h2>Payment</h2>
+<table class="flatTable col-lg-10">
+    <tr class="headingTr">
+        <td>
+            <span>مبلغ قابل پرداخت :</span>
+        </td>
+        <td>
+            <span class="al">11,500</span><span class="toman">تومان</span>
+        </td>
+    </tr>
+</table>
+
+<table class="flatTable col-lg-9">
+    <tr class="titleTr">
+        <td class="titleTd">شیوه پرداخت اینترنتی</td>
+        <td colspan="3"></td>
+    </tr>
+    <tr>
+        <td>
+            <div class="shipping_list col-lg-12" style="padding:0px 25px">
+
+                <div class="shipping_item " style="border:none">
+                    <table class="col-lg-12">
+                        <tbody>
+                            <tr style="min-height:300px">
+                                <td class="first">
+                                    <input value="1" type="radio" id="rbShipping" data-id="1">
+                                </td>
+                                <td class="second">
+                                    <div>
+                                        <p style="font-size:larger">پرداخت اینترنتی</p>
+                                        <div id="ctl08_rptPaymentList_dvChooseBank_0" class="choose">
+                                            انتخاب درگاه پرداخت :&nbsp;&nbsp;<span class="wiki" data-id="1429">( پرداخت از طریق کلیه کارت های عضو شتاب )</span>
+                                            <ul id="rbBankType" disabled="disabled" class="aspNetDisabled">
+                                                <li><span class="aspNetDisabled"><input id="rbBankType_0" type="radio" name="ctl08$rptPaymentList$ctl00$rbBankType" value="2" disabled="disabled"><label for="rbBankType_0"> درگاه پرداخت اینترنتی بانک پارسیان</label></span></li>
+                                                <li><span class="aspNetDisabled"><input id="rbBankType_1" type="radio" name="ctl08$rptPaymentList$ctl00$rbBankType" value="1" disabled="disabled"><label for="rbBankType_1"> درگاه پرداخت اینترنتی بانک ملت</label></span></li>
+
+                                            </ul>
+                                        </div>
+                                        <p class="desc"></p>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="first">
+                                    <input value="4" name="ctl08$rptPaymentList$ctl01$PaymentTypeGroup" type="radio" id="ctl08_rptPaymentList_rbPaymentType_1" class="bank">
+                                </td>
+                                <td class="second">
+                                    <div>
+                                        <p style="font-size:larger">پرداخت در محل</p>
+
+                                        <p class="desc">در حال حاضر مشتریانی که سفارش آن ها از طریق تحویل اکسپرس دیجی کالا ارسال می شود، می توانند وجه سفارش خود را بصورت نقدی یا با استفاده از کارت بانکی خود در محل دریافت پرداخت نماید.</p>
+                                    </div>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="first">
+                                    <input value="2" name="ctl08$rptPaymentList$ctl02$PaymentTypeGroup" type="radio" id="ctl08_rptPaymentList_rbPaymentType_2" class="bank">
+                                </td>
+                                <td class="second">
+                                    <div>
+                                        <p style="font-size:larger">کارت به کارت</p>
+
+                                        <p class="desc">شما می توانید وجه سفارش خود را بصورت انتقال وجه کارت به کارت پرداخت نموده و حداکثر تا 24 ساعت پس از سفارش اطلاعات آن را ثبت نمایید.</p>
+                                    </div>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="first">
+                                    <input value="3" name="ctl08$rptPaymentList$ctl03$PaymentTypeGroup" type="radio" id="ctl08_rptPaymentList_rbPaymentType_3" class="bank">
+                                </td>
+                                <td class="second">
+                                    <div>
+                                        <p style="font-size:larger">واریز به حساب</p>
+
+                                        <p class="desc">شما می توانید وجه سفارش خود را از طریق مراجعه به شعب بانک به حساب شرکت فن آوازه واریز کرده و تا حداکثر 24 ساعت پس از سفارش اطلاعات آن را ثبت نمایید.</p>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+            </div>
+        </td>
+
+
+    </tr>
+
+</table>
+
+
+
+
+<div class="foot col-lg-8 col-lg-offset-5 col-xs-offset-4" style="margin-bottom:3%">
+    <a class="btn btn-primary btn-small" href="@Url.Action("Index", "Home")" data-dismiss="modal">پرداخت  </a>
+    <a class="btn btn-default" href="@Url.Action("Index", "Home")" data-dismiss="modal">حذف سفارش </a>
+</div>
 

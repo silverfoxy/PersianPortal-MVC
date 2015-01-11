@@ -26,6 +26,8 @@ namespace PersianPortal.Controllers
                 {
                     ViewBag.CanViewNewsPanel = true;
                 }
+                else
+                    ViewBag.CanViewNewsPanel = false;
             }
             else
                 ViewBag.CanViewNewsPanel = false;

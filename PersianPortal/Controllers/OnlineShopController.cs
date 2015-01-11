@@ -30,13 +30,6 @@ namespace PersianPortal.Controllers
         }
 
         //
-        // GET: /PaymentReview/
-        public ActionResult PaimentReview()
-        {
-            return View();
-        }
-
-        //
         // GET: /Payment/
         public ActionResult Payment()
         {

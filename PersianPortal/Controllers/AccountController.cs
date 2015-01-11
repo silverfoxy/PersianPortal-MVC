@@ -80,6 +80,25 @@ namespace PersianPortal.Controllers
         }
 
         //
+        // GET: /Account/RoleSet
+        [Authorize(Roles = "Administrator")]
+        public ActionResult RoleSet()
+        {
+            ViewBag.Users = new SelectList(db.Users, "Id", "UserName");
+            ViewBag.Roles = new SelectList(db.Roles,"title","Role");
+            return View();
+        }
+
+        //
+        // POST: /Account/RoleSet
+        [HttpPost]
+        [Authorize(Roles = "Administrator")]
+        public ActionResult RoleSet(User user, Role role)
+        {
+            return RedirectToAction("RoleSet");
+        }
+
+        //
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)

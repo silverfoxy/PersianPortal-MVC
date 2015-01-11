@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using PersianPortal.Models;
 
 namespace PersianPortal.Controllers
@@ -17,6 +18,18 @@ namespace PersianPortal.Controllers
         // GET: Contents
         public ActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                var roles = db.Users.Find(User.Identity.GetUserId()).Roles.ToList();
+                if (roles.Select(r => r.Role.Name).Contains("Administrator") || roles.Select(r => r.Role.Name).Contains("PoemsAdmin"))
+                {
+                    ViewBag.CanViewNewsPanel = true;
+                }
+                else
+                    ViewBag.CanViewNewsPanel = false;
+            }
+            else
+                ViewBag.CanViewNewsPanel = false;
             var content = db.Content.Include(c => c.Author);
             return View(content.ToList());
         }
