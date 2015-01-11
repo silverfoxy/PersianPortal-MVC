@@ -80,6 +80,18 @@ namespace PersianPortal.Controllers
         }
 
         //
+        // POST: /Account/RoleSet
+        [HttpPost]
+        [Authorize(Roles = "Administrator")]
+        public ActionResult RoleSet(User user, string Password)
+        {
+            UserManager<IdentityUser> userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
+            userManager.RemovePassword(user.UserName);
+            userManager.AddPassword(user.UserName, Password);
+            return RedirectToAction("RoleSet");
+        }
+
+        //
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)

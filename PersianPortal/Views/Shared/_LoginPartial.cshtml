@@ -5,7 +5,7 @@
     {
         @Html.AntiForgeryToken()
         <ul class="nav navbar-nav nav">
-            <li> <a href="@Url.Action("Shopping", "OnlineShop")"><span id="ShoppingCartNum" class="label label-warning pull-right" style="display:none"></span> &nbsp;&nbsp;&nbsp;&nbsp; <strong class="fa fa-fw fa-shopping-cart"></strong> سبد خرید  </a></li>
+            <li> <a href="@Url.Action("Shopping", "OnlineShop")"><span id="ShoppingCartNum" class="label label-warning pull-right" style="display:none"></span> <strong class="fa fa-fw fa-shopping-cart"></strong> سبد خرید  </a></li>
             <li class="dropdown">
                 <a href="" class="dropdown-toggle" data-toggle="dropdown"><strong class="caret"></strong> حساب من <span class="fa fa-user"></span></a>
                 <ul class="dropdown-menu" style="left: 0px !important; right: auto !important">
@@ -16,7 +16,7 @@
                         <a href="@Url.Action("Manage", "Account", routeValues: null)"><span class="fa fa-lock"></span> تغییر رمز عبور</a>
                     </li>
                     <li>
-                        <a href="@Url.Action("Manage", "Account", routeValues: null)"><span class="fa fa-refresh"></span> به روز رسانی پروفایل</a>
+                        <a href="@Url.Action("EditInfo", "Account", routeValues: null)"><span class="fa fa-refresh"></span> به روز رسانی پروفایل</a>
                     </li>
                     <li>
                         <a href="#"><span class="fa fa-briefcase"></span> پرداخت</a>
@@ -28,7 +28,7 @@
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li style="padding:15px 10px">
+            <li style="padding-top:15px;padding-left:20px">
                 @User.Identity.Name 
                 خوش آمدید !
                 @*@Html.ActionLink(User.Identity.Name + "خوش آمدید " + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })*@

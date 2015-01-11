@@ -108,3 +108,9 @@ function Omen() {
     }
     count++;
 }
+
+function ShowProgress() {
+    $("#ShoppingCart").css("display", "none");
+    $("#Info").css("display", "block");
+    $("#ShoppingProgress").css("display", "block");
+}

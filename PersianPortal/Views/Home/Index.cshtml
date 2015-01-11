@@ -11,106 +11,16 @@
         <p><a href="http://asp.net" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
     </div>*@
 
-@if (Model != null)
-{
-    foreach (var item in Model)
-    {
-        if (count > 0)
-        {
-            <div class="row news-box">
-                <div class=" col-lg-8 col-lg-offset-2" style="padding: 10px 30px 20px 30px !important">
-                    <div class="news-heading">
-                        <h3>
-                            <a href="#">title</a>
-                            <span> : </span>
-                            <span class="news-date">
-                                <strong>@item.PublishDate.Day</strong>
-                                @item.PublishDate.Month
-                                <em>@item.PublishDate.Year</em>
-                            </span>
-                        </h3>
-                    </div>
-                    <p>
-                        @item.Body
-                        <strong style="float:left;margin:20px">@item.Author</strong>
-                    </p>
-                    <div class="news-read-more">
-                        <span>[ </span>
-                        <a href="/talking-of-design/article/the-best-and-only-css-framework-you-need"> ادامه خبر </a>
-                        <span> ]</span>
-                    </div>
-                    <div class="dashed-hr"></div>
-                </div>
-            </div>
-            count--;
-        }
-    }
-    <div class="col-lg-2">
-        <div class="row news-section">
-            <div class="ad-box">
-                <div class="well">
-                    <h1 class="text-center">تبلیغات</h1>
-                    <hr />
-                    <div style="text-align: center">
-                        <img src="/images/c8c57293d052b777855b86cafb348a4b.gif" width="100%" alt="Ad 1" />
-                    </div>
-                </div>
-            </div>
-            <div class="ad-box">
-                <div class="well">
-                    <h1 class="text-center">تبلیغات</h1>
-                    <hr />
-                    <div style="text-align: center">
-                        <img src="/images/New_28142.gif" width="100%" alt="Ad 2" />
-                    </div>
-                </div>
-            </div>
-            <div class="ad-box">
-                <div class="well">
-                    <h1 class="text-center">تبلیغات</h1>
-                    <hr />
-                    <div style="text-align: center">
-                        <img src="/images/New_28529.gif" width="100%" alt="Ad 3" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+@if (ViewBag.CanViewNewsPanel)
+            {
+    @Html.ValidationSummary(true)
+    <a class="btn btn-primary col-lg-3 col-lg-offset-3" style="margin-bottom:1%" href="@Url.Action("ResetPassword", "Account")"><i class="fa fa-fw fa-unlock"></i>تعیین سطح دسترسی کاربران</a>
+<a class="btn btn-faal col-lg-3 col-lg-offset-3" href="@Url.Action("ResetPassword", "Account")"><i class="fa fa-fw fa-lock"></i>تغییر رمز عبور کاربران</a>
 }
-else
-{
-    <div class="col-lg-2 col-lg-offset-8">
-        <div class="row news-section">
-            <div class="ad-box">
-                <div class="well">
-                    <h1 class="text-center">تبلیغات</h1>
-                    <hr />
-                    <div style="text-align: center">
-                        <img src="/images/c8c57293d052b777855b86cafb348a4b.gif" width="100%" alt="Ad 1" />
-                    </div>
-                </div>
-            </div>
-            <div class="ad-box">
-                <div class="well">
-                    <h1 class="text-center">تبلیغات</h1>
-                    <hr />
-                    <div style="text-align: center">
-                        <img src="/images/New_28142.gif" width="100%" alt="Ad 2" />
-                    </div>
-                </div>
-            </div>
-            <div class="ad-box">
-                <div class="well">
-                    <h1 class="text-center">تبلیغات</h1>
-                    <hr />
-                    <div style="text-align: center">
-                        <img src="/images/New_28529.gif" width="100%" alt="Ad 3" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="col-lg-10">
+  <h2 class="col-lg-offset-3" style="margin-top:5%">
+      به پورتال جامع پارسی زبانان خوش آمدید. 
 
-}
-
+  </h2>
+</div>
 

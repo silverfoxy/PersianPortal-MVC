@@ -15,8 +15,8 @@ namespace PersianPortal.Controllers
             return View();
         }
         //
-        // GET: /backgameon/
-        public ActionResult Backgammon()
+        // GET: /Game/
+        public ActionResult Game()
         {
             return View();
         }

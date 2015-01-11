@@ -775,10 +775,11 @@
     <Content Include="Views\SocialNetwork\Index.cshtml" />
     <Content Include="Views\Hafez\Index.cshtml" />
     <Content Include="Views\Dictionary\Index.cshtml" />
-    <Content Include="Views\SocialNetwork\Backgammon.cshtml" />
     <Content Include="Views\OnlineShop\PaymentInfo.cshtml" />
     <Content Include="Views\Account\EditInfo.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\SocialNetwork\Game.cshtml" />
+    <Content Include="Views\Account\RoleSet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201501080617569_init.resx">

@@ -1,22 +1,19 @@
-﻿@model PersianPortal.Models.User
-
+﻿
 @{
-    ViewBag.Title = "مدیریت اطلاعات کاربری";
+    ViewBag.Title = "RoleSet";
 }
 
-<h2>مدیریت اطلاعات کاربری</h2>
-
+<h2>RoleSet</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal col-lg-10">
         <h4>کاربر</h4>
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.Id)
-
         <div class="form-group">
             @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -30,7 +27,6 @@
                 @Html.ValidationMessageFor(model => model.Name)
             </div>
         </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.FamilyName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -38,7 +34,6 @@
                 @Html.ValidationMessageFor(model => model.FamilyName)
             </div>
         </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -46,7 +41,6 @@
                 @Html.ValidationMessageFor(model => model.DateOfBirth)
             </div>
         </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.EmailAddress, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -54,7 +48,6 @@
                 @Html.ValidationMessageFor(model => model.EmailAddress)
             </div>
         </div>
-
         <div class="form-group">
             <div class="col-md-offset-4 col-md-6" style="margin-top:3%">
                 <input type="submit" value="ثبت" class="btn btn-success" />
@@ -62,11 +55,9 @@
         </div>
     </div>
 }
-
 @*<div>
-    @Html.ActionLink("بازگشت", "Index")
-</div>*@
-
+        @Html.ActionLink("بازگشت", "Index")
+    </div>*@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

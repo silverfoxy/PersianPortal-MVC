@@ -1,34 +1,33 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
-
 <!DOCTYPE html>
 <html>
 <head>
 
     <!-- Website Title & Description for Search Engine purposes -->
     <title>بازی آنلاین | پروفایل من</title>
+    <meta name="description" content="Learn how to code your first responsive website with the new Twitter Bootstrap 3.">
 
     <!-- Mobile viewport optimized -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <!-- Bootstrap CSS -->
-    <link href="Content/bootstrap.css" rel="stylesheet">
+    <link href="~/Content/bootstrap.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="Content/bootstrap-rtl.css">
+    <link rel="stylesheet" href="~/Content/bootstrap-rtl.css">
     <!--<link href="css/bootstrap-glyphicons.css" rel="stylesheet">-->
 
-    <link href="Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="Content/styles.css">
-    <link rel="stylesheet" href="Content/social-net-styles.css">
+    <link rel="stylesheet" href="~/Content/styles.css">
+    <link rel="stylesheet" href="~/Content/social-net-styles.css">
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- Include Modernizr in the head, before any other Javascript -->
-    <script src="Scripts/modernizr-2.6.2.min.js"></script>
+    <script src="~/Script/modernizr-2.6.2.min.js"></script>
 
 </head>
 <body>
@@ -45,18 +44,18 @@
 
             <ul class="nav navbar-nav nav">
                 <li class="dropdown">
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown" style="min-width:200px"><strong class="caret"></strong>  رویداد های جدید <span class="label label-warning pull-left">8</span></a>
-                    <ul class="dropdown-menu" style="width: 200px">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="min-width:200px"><strong class="caret"></strong>  رویداد های جدید <span class="label label-warning pull-left">8</span></a>
+                    <ul class="dropdown-menu">
                         <li>
-                            <a id="kk" href="@Url.Action("Index", "News")" style="background-color:none"> اخبار<span class="label label-warning pull-left">3</span></a>
+                            <a id="kk" href="/News.html" style="background-color:none"> اخبار<span class="label label-warning pull-left">3</span></a>
                         </li>
 
                         <li>
-                            <a href="@Url.Action("Index", "Poems")">اشعار<span class="label label-warning pull-left">1</span></a>
+                            <a href="/index.html">اشعار<span class="label label-warning pull-left">1</span></a>
                         </li>
 
                         <li>
-                            <a href="@Url.Action("Index", "Mail")"> ایمیل ها<span class="label label-warning pull-left">4</span></a>
+                            <a href="/Outlook Web Access.htm"> ایمیل ها<span class="label label-warning pull-left">4</span></a>
                         </li>
                     </ul>
                 </li>
@@ -64,29 +63,48 @@
                     <a href="@Url.Action("Index", "Home")" style="font-size:large"> صفحه اصلی پورتال <span class="fa fa-home"></span></a>
                 </li>
                 <li class="dropdown">
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown"><strong class="caret"></strong> حساب من <span class="fa fa-user"></span></a>
-                    <ul class="dropdown-menu" style="left: 0px !important; right: auto !important">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><strong class="caret"></strong> حساب من <span class="fa fa-user"></span></a>
+
+                    <ul class="dropdown-menu">
                         <li>
-                            <a id="kk" href="#customizeModal" onclick="ShowCustomizeModal()" style="background-color:none"><span class="fa fa-wrench"></span> تنظیمات</a>
+                            <a id="kk" href="#" style="background-color:none"><span class="fa fa-wrench"></span> تنظیمات</a>
                         </li>
+
                         <li>
-                            <a href="@Url.Action("Manage", "Account", routeValues: null)"><span class="fa fa-lock"></span> تغییر رمز عبور</a>
+                            <a href="#"><span class="fa fa-refresh"></span> به روز رسانی پروفایل</a>
                         </li>
-                        <li>
-                            <a href="@Url.Action("Manage", "Account", routeValues: null)"><span class="fa fa-refresh"></span> به روز رسانی پروفایل</a>
-                        </li>
+
                         <li>
                             <a href="#"><span class="fa fa-briefcase"></span> پرداخت</a>
                         </li>
+
                         <li class="divider"></li>
-                        <li><a href="javascript:document.getElementById('logoutForm').submit()"><span class="fa fa-sign-out"></span>خروج</a></li>
+
+                        <li>
+                            <a href="#"><span class="fa fa-sign-out"></span> خروج</a>
+                        </li>
                     </ul>
                 </li>
             </ul>
 
             <div class="navbar-brand"><!--<img src="images/logo.png" alt="Your Logo">--> پورتال جامع پارسی زبانان</div>
 
-    </div><!-- end container --></div>
+
+            <div class="container">
+                <form class="navbar-form" id="search-box">
+                    <div class="input-group" style="display:table">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-default btn-search"><span class="fa fa-search"></span></button>
+                        </span>
+                        <input type="text" class="form-control" placeholder="پیدا کن..." id="searchInput" onchange="spellCheck()" onkeydown="spellCheck()" onkeypress="spellCheck()" onkeyup="spellCheck()">
+                    </div>
+                </form><!-- end navbar-form -->
+            </div>
+
+        </div><!-- end nav-collapse -->
+
+
+    </div><!-- end container -->
     <div class="container-fluid" style="min-height:670px">
         <div class="row">
             <div class="col-md-2">
@@ -95,7 +113,7 @@
                 <hr>
                 <ul class="nav nav-pills nav-stacked">
                     <li>
-                        <a href="SocialNetwork.html">
+                        <a href="@Url.Action("Index", "SocialNetwork")">
                             <span class="fa fa-home"></span>&nbsp;
                             صفحه اول پروفایل
                         </a>
@@ -240,11 +258,11 @@
     </footer>
 
     <!-- All Javascript at the bottom of the page for faster page loading -->
-    <script src="Scripts/jquery.js"></script>
+    <script src="~/Script/jquery.js"></script>
     <!-- Bootstrap JS -->
-    <script src="Scripts/bootstrap.js"></script>
+    <script src="~/Script/bootstrap.js"></script>
     <!-- Custom JS -->
-    <script src="Scripts/script.js"></script>
+    <script src="~/Script/script.js"></script>
 
     <script>
         function spellCheck() {
@@ -258,4 +276,3 @@
     </script>
 </body>
 </html>
-
