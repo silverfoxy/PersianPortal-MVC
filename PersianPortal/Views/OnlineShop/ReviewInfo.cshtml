@@ -3,5 +3,119 @@
     ViewBag.Title = "ReviewInfo";
 }
 
-<h2>ReviewInfo</h2>
+<div class="list-group col-lg-8 col-lg-offset-1 col-xs-12 shopping-steps">
+    <div id="ShoppingProgress" class="progress" style="height: 30px">
+        <div class="progress-bar progress-bar-success" style="width: 25%">
+            <span class="sr-only">ورود به پورتال</span>
+        </div>
+        <div class="progress-bar progress-bar-success" style="width: 25%">
+            <span class="sr-only">اطلاعات ارسال سفارش</span>
+        </div>
+        <div class="progress-bar progress-bar-warning" style="width: 25%">
+            <span class="sr-only">بازبینی سفارش</span>
+        </div>
+        <div class="progress-bar progress-bar-info" style="width: 25%">
+            <span class="sr-only">اطلاعات پرداخت</span>
+        </div>
 
+    </div>
+
+
+    <table class="flatTable">
+        <tr class="titleTr">
+            <td class="titleTd" colspan="1">سفارشات</td>
+            <td colspan="4"></td>
+        </tr>
+        <tr class="headingTr">
+            <td>محصول</td>
+            <td>شرح محصول</td>
+            <td>تعداد</td>
+            <td>قیمت واحد</td>
+            <td>قیمت کل</td>
+        </tr>
+
+        <tr>
+            <td>
+                شازده کوچولو
+                <img src="images/shazdeh.jpg" alt="شازده کوچولو" style="max-height:200px" />
+            </td>
+            <td>
+                <h4 class="list-group-item-heading">شازده کوچولو</h4>
+                <p class="list-group-item-text">نویسنده : آنتوان دو سنت اگزوپری</p>
+            </td>
+            <td>1</td>
+            <td>
+                <span class="al">70,000</span><span class="toman">تومان</span>
+            </td>
+            <td>
+                <span>70,000</span><span class="toman">تومان</span>
+
+            </td>
+
+        </tr>
+
+    </table>
+
+    <table class="flatTable">
+        <tr class="titleTr">
+            <td class="titleTd">خلاصه صورتحساب من</td>
+            <td colspan="3"></td>
+        </tr>
+        <tr class="headingTr">
+            <td>جمع کل خرید من:</td>
+            <td>هزینه ارسال، بیمه و بسته بندی سفارش:</td>
+            <td>جمع کل قابل پرداخت:</td>
+        </tr>
+
+        <tr>
+            <td>
+                <span class="al">70,000</span><span class="toman">تومان</span>
+            </td>
+            <td>
+                <span>45,000</span><span class="toman">تومان</span>
+            </td>
+
+            <td>
+                <span class="al">11,500</span><span class="toman">تومان</span>
+            </td>
+
+
+        </tr>
+
+    </table>
+
+    <table class="flatTable">
+        <tr class="titleTr">
+            <td class="titleTd">اطلاعات ارسال سفارش</td>
+            <td colspan="3"></td>
+        </tr>
+        <tr class="headingTr">
+            <td>گیرنده</td>
+            <td>نحوه ارسال</td>
+        </tr>
+
+        <tr>
+            <td>
+                <img class="right" src="http://94.182.168.34/Digikala/Image/Icon/map_gray_icon.png" alt="">
+                <span class="txt">این سفارش به <span class="green">k kkk</span> به آدرس  nknlnkkkkkkkkkkk و شماره تماس  09123949249  تحویل می&zwnj;گردد</span>
+            </td>
+            <td>
+                <img class="right" src="http://94.182.168.34/Digikala/Image/Icon/delivery_gray__icon.png" alt="">
+                <span class="txt">این سفارش از طریق <span class="green">تحويل اکسپرس ديجي کالا (ویژه شهر تهران)</span> با هزینه <span class="green">4,500</span> تومان به شما تحویل داده خواهد شد.</span>
+            </td>
+
+
+        </tr>
+
+    </table>
+
+    <div>
+        <a class="btn btn-default" href="@Url.Action("ReviewInfo", "OnlineShop")" data-dismiss="modal">بازگشت </a>
+    </div>
+
+    <div class="foot col-lg-8 col-lg-offset-5 col-xs-offset-4">
+        <a class="btn btn-primary btn-small" href="@Url.Action("Payment", "OnlineShop")" data-dismiss="modal">ادامه </a>
+        <a class="btn btn-default" href="@Url.Action("Index", "Home")" data-dismiss="modal">حذف سفارش </a>
+    </div>
+
+</div>

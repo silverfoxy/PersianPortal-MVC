@@ -1,0 +1,407 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Website Title & Description for Search Engine purposes -->
+    <title> پروفایل من </title>
+
+    <!-- Mobile viewport optimized -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link href="Content/bootstrap.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="Content/bootstrap-rtl.css">
+    <!--<link href="css/bootstrap-glyphicons.css" rel="stylesheet">-->
+
+    <link href="Content/font-awesome.min.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="Content/styles.css">
+    <link rel="stylesheet" href="Content/social-net-styles.css">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Include Modernizr in the head, before any other Javascript -->
+    <script src="Scripts/modernizr-2.6.2.min.js"></script>
+
+</head>
+<body>
+
+    <div class="navbar navbar-fixed-top">
+        <div class="container-fluid">
+
+            <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+            <button class="navbar-toggle" data-target=".navbar-responsive-collapse" data-toggle="collapse" type="button">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <ul class="nav navbar-nav nav">
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown" style="min-width:200px"><strong class="caret"></strong>  رویداد های جدید <span class="label label-warning pull-left">8</span></a>
+                    <ul class="dropdown-menu" style="width: 200px">
+                        <li>
+                            <a id="kk" href="@Url.Action("Index", "News")" style="background-color:none"> اخبار<span class="label label-warning pull-left">3</span></a>
+                        </li>
+
+                        <li>
+                            <a href="@Url.Action("Index", "Poems")">اشعار<span class="label label-warning pull-left">1</span></a>
+                        </li>
+
+                        <li>
+                            <a href="@Url.Action("Index", "Mail")"> ایمیل ها<span class="label label-warning pull-left">4</span></a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Home")" style="font-size:large"> صفحه اصلی پورتال <span class="fa fa-home"></span></a>
+                </li>
+                    <li class="dropdown">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown"><strong class="caret"></strong> حساب من <span class="fa fa-user"></span></a>
+                        <ul class="dropdown-menu" style="left: 0px !important; right: auto !important">
+                            <li>
+                                <a id="kk" href="#customizeModal" onclick="ShowCustomizeModal()" style="background-color:none"><span class="fa fa-wrench"></span> تنظیمات</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Manage", "Account", routeValues: null)"><span class="fa fa-lock"></span> تغییر رمز عبور</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Manage", "Account", routeValues: null)"><span class="fa fa-refresh"></span> به روز رسانی پروفایل</a>
+                            </li>
+                            <li>
+                                <a href="#"><span class="fa fa-briefcase"></span> پرداخت</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="javascript:document.getElementById('logoutForm').submit()"><span class="fa fa-sign-out"></span>خروج</a></li>
+                        </ul>
+                    </li>
+            </ul>
+
+            <div class="navbar-brand"><!--<img src="images/logo.png" alt="Your Logo">--> پورتال جامع پارسی زبانان</div>
+
+
+            <div class="container">
+                <form class="navbar-form" id="search-box">
+                    <div class="input-group" style="display:table">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-default btn-search"><span class="fa fa-search"></span></button>
+                        </span>
+                        <input type="text" class="form-control" placeholder="پیدا کن..." id="searchInput" onchange="spellCheck()" onkeydown="spellCheck()" onkeypress="spellCheck()" onkeyup="spellCheck()">
+                    </div>
+                </form><!-- end navbar-form -->
+            </div>
+
+        </div><!-- end nav-collapse -->
+
+
+    </div><!-- end container -->
+    <div class="container-fluid" style="min-height:670px">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="text-center"><img class="img-thumbnail profile-pic" alt="Profile Pic" src="/images/female-avatar.png"></div>
+                <h4 class="text-center">نینا رفیعی فر</h4>
+                <hr>
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="active">
+                        <a href="#">
+                            <span class="fa fa-home"></span>&nbsp;
+                            صفحه اول پروفایل
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="fa fa-envelope"></span>&nbsp;
+                            پیغام ها
+                            <span class="badge pull-left socialnet-badge">0</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="fa fa-photo"></span>&nbsp;
+                            عکس ها
+                            <span class="badge pull-left socialnet-badge">13</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Backgammon", "SocialNetwork")">
+                            <span class="fa fa-gamepad"></span>&nbsp;
+                            بازی
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-8">
+                <div class="well">
+                    <h1>
+                        وای امروز عالی بووود! <img src="images/smiley_cool.png" />
+                        <br />
+                        خیلی خوش گذشت.
+                    </h1>
+                    <hr />
+                    <div class="h50"><h6 class="pull-left">10/12/2014 08:59:22 AM</h6></div>
+                    <div class="likes">2 نفر این پست را پسندیده اند.</div>
+                    <form action="" method="post">
+                        <div><button type="submit" class="btn btn-sm btn-primary pull-left"><span class="fa fa-thumbs-up"></span> می پسندم</button></div>
+                    </form>            <br>
+                    <h3>نظر ها</h3>
+                    <div>
+                        علی <span class="comment-time">(10/12/2014 08:59:30 AM)</span> :
+                        <div class="comment-text">
+                            نا مردا تنهایی رفتین؟ <img src="images/smiley_cry.png" />
+                        </div>
+                    </div>
+                    <div>
+                        نینا <span class="comment-time">(10/12/2014 08:59:36 AM)</span> :
+                        <div class="comment-text">
+                            نیومدی که!!!!
+                            <img src="images/smiley_yell.png" />
+                        </div>
+                    </div>
+                    <div>
+                        علی <span class="comment-time">(10/12/2014 09:02:42 AM)</span> :
+                        <div class="comment-text">
+                            می گقتی میومدم!
+                            <img src="images/emoticon_wink.png" />
+                        </div>
+                    </div>
+                    <br>
+                    <form action="" method="post">
+                        <textarea class="form-control" style="width: 100%; display: block; margin-bottom: 10px;" name="body" rows="2" placeholder="نظر خود را بنویسید..."></textarea>
+                        <input type="submit" class="btn btn-info pull-right form-control" value="ارسال" />
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+
+                <div class="row news-section">
+                    <div class="ad-box col-md-4">
+                        <div class="well">
+                            <h1 class="text-center">تبلیغات</h1>
+                            <hr />
+                            <div style="text-align: center">
+                                <img src="/images/c8c57293d052b777855b86cafb348a4b.gif" alt="Ad 1" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ad-box col-md-4">
+                        <div class="well">
+                            <h1 class="text-center">تبلیغات</h1>
+                            <hr />
+                            <div style="text-align: center">
+                                <img src="/images/New_28142.gif" alt="Ad 2" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ad-box col-md-4">
+                        <div class="well">
+                            <h1 class="text-center">تبلیغات</h1>
+                            <hr />
+                            <div style="text-align: center">
+                                <img src="/images/New_28529.gif" alt="Ad 3" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="well">
+                    <h1>
+                        وای امروز عالی بووود! <img src="images/smiley_cool.png" />
+                        <br />
+                        خیلی خوش گذشت.
+                    </h1>
+                    <hr />
+                    <div class="h50"><h6 class="pull-left">10/12/2014 08:59:22 AM</h6></div>
+                    <div class="likes">2 نفر این پست را پسندیده اند.</div>
+                    <form action="" method="post">
+                        <div><button type="submit" class="btn btn-sm btn-primary pull-left"><span class="fa fa-thumbs-up"></span> می پسندم</button></div>
+                    </form>            <br>
+                    <h3>نظر ها</h3>
+                    <div>
+                        علی <span class="comment-time">(10/12/2014 08:59:30 AM)</span> :
+                        <div class="comment-text">
+                            نا مردا تنهایی رفتین؟ <img src="images/smiley_cry.png" />
+                        </div>
+                    </div>
+                    <div>
+                        نینا <span class="comment-time">(10/12/2014 08:59:36 AM)</span> :
+                        <div class="comment-text">
+                            نیومدی که!!!!
+                            <img src="images/smiley_yell.png" />
+                        </div>
+                    </div>
+                    <div>
+                        علی <span class="comment-time">(10/12/2014 09:02:42 AM)</span> :
+                        <div class="comment-text">
+                            می گقتی میومدم!
+                            <img src="images/emoticon_wink.png" />
+                        </div>
+                    </div>
+                    <br>
+                    <form action="" method="post">
+                        <textarea class="form-control" style="width: 100%; display: block; margin-bottom: 10px;" name="body" rows="2" placeholder="نظر خود را بنویسید..."></textarea>
+                        <input type="submit" class="btn btn-info pull-right form-control" value="ارسال" />
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <h2>دوستان</h2>
+                <ul class="BorderedList">
+                    <li class="online"><a href="#"><i class="fa fa-circle"></i>مهشاد شریفی</a></li>
+                    <li class="online"><a href="#"><i class="fa fa-circle"></i>مهشاد شریفی</a></li>
+                    <li class="online"><a href="#"><i class="fa fa-circle"></i>مهشاد شریفی</a></li>
+                    <li class="away"><a href="#"><i class="fa fa-circle"></i>مهشاد شریفی</a></li>
+                    <li class="offline"><a href="#"><i class="fa fa-circle-o"></i>مهشاد شریفی</a></li>
+                    <li class="offline"><a href="#"><i class="fa fa-circle-o"></i>مهشاد شریفی</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="topwrap">
+            <div class="mrg-auto">
+                <div class="right" style="line-height:80px; font-size:18px;width:50%">چطور می توانیم کمک&zwnj;تان کنیم؟ با ما تماس بگیرید</div>
+            </div>
+        </div>
+        <div class="FooterThumbnails row">
+            <div class="col-lg-4 col-sm-4 col-xs-12">
+                <div class="FooterThumbnail" style="border:none">
+                    <!--<img alt="PSD to HTML5 &amp; CSS3" src="images/item_psd2html5.jpg">
+
+                    <div class="label label-success price"><span class="glyphicon glyphicon-tag"></span> 39<sup>$</sup></div>-->
+
+                    <div class="caption">
+                        <h2>راهنمای پورتال</h2>
+                        <div class="line"></div>
+                        <div class="row" style="text-align:right; margin-top:40px; margin:20px">
+
+                            <a href="#" style="text-decoration:none; color:white"><p style="font-size:large"> چگونه با پورتال کار کنم ؟</p></a>
+                            <a href="#" style="text-decoration: none; color: white">
+                                <p style="font-size:large"> پورتال جامع پارسی زبانان چیست ؟ </p>
+                            </a>
+                            <a href="#" style="text-decoration: none; color: white"> <p style="font-size:large">  چگونه پروفایل بسازم ؟</p></a>
+                        </div>
+                    </div><!-- end caption -->
+                </div><!-- end thumbnail -->
+            </div><!-- end col-6 -->
+
+
+            <div class="col-lg-4 col-sm-4 col-xs-12">
+                <div class="FooterThumbnail" style="border:none">
+                    <!--<img alt="PSD to HTML5 &amp; CSS3" src="images/item_psd2html5.jpg">
+
+                    <div class="label label-success price"><span class="glyphicon glyphicon-tag"></span> 39<sup>$</sup></div>-->
+                    <div class="caption">
+                        <h2> خدمات مشتریان</h2>
+                        <div class="line"></div>
+                        <div class="row" style="text-align:right; margin-top:40px; margin:20px">
+
+                            <a href="#" style="text-decoration:none; color:white"><p style="font-size:large">تماس با ما</p></a>
+                            <a href="#" style="text-decoration: none; color: white">
+                                <p style="font-size:large"> پاسخ به پرسش های متداول </p>
+                            </a>
+                        </div>
+                    </div><!-- end caption -->
+                </div><!-- end thumbnail -->
+            </div>
+            <div class="col-lg-4 col-sm-4 col-xs-12">
+                <div class="FooterThumbnail" style="border:none">
+                    <!--<img alt="PSD to HTML5 &amp; CSS3" src="images/item_psd2html5.jpg">
+
+                    <div class="label label-success price"><span class="glyphicon glyphicon-tag"></span> 39<sup>$</sup></div>-->
+                    <div class="caption">
+                        <h2>ما در شبکه های اجتماعی</h2>
+                        <div class="line"></div>
+                        <div class="row" style="text-align:right; margin-top:40px; margin:20px">
+
+                            <p style="font-size:large">نظرات خود را از طریق شبکه های رسمی پورتال با ما در میان بگذارید و از آخرین رویدادها و طرح های جذاب فروش کتاب و CD مطلع شوید.</p>
+                        </div>
+                    </div><!-- end caption -->
+                </div><!-- end thumbnail -->
+            </div>
+        </div>
+
+        <div style="font-size:large;text-align:center">
+            Copyright © پورتال جامع پارسی زبانان دانشگاه شهید بهشتی 2014 <a href="#"></a>
+        </div>
+    </footer>
+
+    <div id="customizeModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="float:left; margin-top:-3%">×</button>
+                    <h4 class="modal-title" id="login-modal-title-signin">شخصی سازی پورتال :</h4>
+                </div>
+                <div class="container" style="margin:30px">
+                    <form role="form">
+                        <label class="radio-inline" onclick="Default()" style="width: 100%; margin: 30px;">
+                            <input checked="checked" type="radio" name="optradio" style="float: right; margin-left: 30px">
+                            هیچ پشت زمینه ای نداشته باشد
+                        </label>
+                        <label class="radio-inline" style="text-align:right;margin:0; margin:30px; width:100%">
+                            <input type="radio" name="optradio" onclick="back1()" style="float:right; margin-left:30px">
+                            <img src="images/website-background-pattern.jpg" style="height:100px; width:100px; border:3px solid #eee" />
+                        </label>
+                        <label class="radio-inline" style=" margin: 0; margin: 30px; width: 100%">
+                            <input type="radio" name="optradio" onclick="back2()" style="float: right; margin-left: 30px">
+                            <img src="images/bg-6-full.jpg" style="height: 100px; width: 100px; border: 3px solid #eee; " />
+                        </label>
+                        <label class="radio-inline" style=" margin: 0; margin: 30px; width: 100%">
+                            <input type="radio" name="optradio" onclick="back3()" style="float: right; margin-left: 30px">
+                            <img src="images/light_red_hearts_on_white.jpg" style="height: 100px; width: 100px; border: 3px solid #eee; " />
+                        </label>
+                    </form>
+
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+
+    <!-- All Javascript at the bottom of the page for faster page loading -->
+    <script src="Scripts/jquery.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="Scripts/bootstrap.js"></script>
+    <!-- Custom JS -->
+    <script src="Scripts/script.js"></script>
+
+    <script>
+        function ShowCustomizeModal() {
+            $('#customizeModal').modal('show');
+            $('input[datepicker="persiandate"]').datepicker({
+                changeMonth: true,
+                changeYear: true,
+            });
+            $("#datepickerbtn").click(function (event) {
+                event.preventDefault();
+                $("#fadatepicker").focus();
+            })
+        }
+        function Default() {
+            $('body').css("background", "none");
+        }
+        function back1() {
+            $('body').css("background", "url('/images/website-background-pattern.jpg')");
+        }
+        function back2() {
+            $('body').css("background", "url('/images/bg-6-full.jpg')");
+        }
+        function back3() {
+            $('body').css("background", "url('/images/light_red_hearts_on_white.jpg')");
+        }
+        function spellCheck() {
+            if ($("#searchInput").val() == "سلنام" || $("#searchInput").val() == "اسعار" || $("#searchInput").val() == "احبار")
+                $("#searchInput").css("color", "blue");
+            if ($("#searchInput").val() == "سسس" || $("#searchInput").val() == "..." || $("#searchInput").val() == "پپ")
+                $("#searchInput").css("color", "red");
+            if ($("#searchInput").val() == "")
+                $("#searchInput").css("color", "black");
+        }</script>
+
+</body>
+</html>

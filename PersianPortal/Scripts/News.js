@@ -76,3 +76,35 @@ function AddToCart() {
     $("#ShoppingCartNum").html(count);
     count++;
 }
+
+function radio(id) {
+    if (id == "rbShippingX")
+        $("#rbShippingX").addAttr(checked, "checked");
+    $("#rbShippingT").removeAttr(checked);
+}
+
+
+var count = 1;
+function Omen() {
+    if (count > 3)
+        count = 1;
+    switch (count) {
+        case 1:
+            $("#fal2").css("display", "none");
+            $("#fal3").css("display", "none");
+            $("#fal1").css("display", "block");
+            break;
+        case 2:
+            $("#fal1").css("display", "none");
+            $("#fal3").css("display", "none");
+            $("#fal2").css("display", "block");
+            break;
+        case 3:
+            $("#fal2").css("display", "none");
+            $("#fal1").css("display", "none");
+            $("#fal3").css("display", "block");
+            break;
+
+    }
+    count++;
+}

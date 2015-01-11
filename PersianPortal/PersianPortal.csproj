@@ -164,7 +164,9 @@
     <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\ContentsController.cs" />
+    <Compile Include="Controllers\DictionaryController.cs" />
     <Compile Include="Controllers\FilesController.cs" />
+    <Compile Include="Controllers\HafezController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MailController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -173,6 +175,7 @@
     <Compile Include="Controllers\PoemsController.cs" />
     <Compile Include="Controllers\PoemTypesController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\SocialNetworkController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -768,7 +771,10 @@
     <Content Include="Views\OnlineShop\Shopping.cshtml" />
     <Content Include="Views\OnlineShop\Payment.cshtml" />
     <Content Include="Views\OnlineShop\ReviewInfo.cshtml" />
-    <Content Include="Views\OnlineShop\PaymentInfo.cshtml" />
+    <Content Include="Views\SocialNetwork\Index.cshtml" />
+    <Content Include="Views\Hafez\Index.cshtml" />
+    <Content Include="Views\Dictionary\Index.cshtml" />
+    <Content Include="Views\SocialNetwork\Backgammon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201501080617569_init.resx">
