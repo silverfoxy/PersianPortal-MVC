@@ -77,10 +77,13 @@
                         <li><a href="/Dictionary.html"><i class="fa fa-fw fa-fw fa-book"></i>لغت نامه</a></li>
                         <li><a href="@Url.Action("OnlineShop", "OnlineShop")"><i class="fa fa-fw fa-shopping-cart"></i>فروشگاه</a></li>
                         <li><a href="/SocialNetwork.html"><i class="fa fa-fw fa-users"></i>شبکه اجتماعی</a></li>
-
-                    }
-                    else
-                    {
+                        if (User.IsInRole("Administrator"))
+                        {
+                            <li><a href="@Url.Action("ResetPassword", "Account")"><i class="fa fa-fw fa-user"></i>بازیابی رمز عبور کاربران</a></li>
+                        }
+                        }
+                        else
+                        {
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-comment"></i>ادبی</a>
                             <ul class="dropdown-menu" style="right:100%;top:0%">
