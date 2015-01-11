@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity;
 
 namespace PersianPortal.Controllers
 {
+    [Authorize]
     public class PoemsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -18,6 +19,16 @@ namespace PersianPortal.Controllers
         // GET: Poems
         public ActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                var roles = db.Users.Find(User.Identity.GetUserId()).Roles.ToList();
+                if (roles.Select(r => r.Role.Name).Contains("Administrator") || roles.Select(r => r.Role.Name).Contains("NewsAdmin"))
+                {
+                    ViewBag.CanViewNewsPanel = true;
+                }
+            }
+            else
+                ViewBag.CanViewNewsPanel = false;
             var poem = db.Poem.Include(p => p.PoemType);
             return View(db.Poem.ToList());
         }

@@ -697,6 +697,7 @@
     <Content Include="Scripts\persianDatepicker.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Searchbox.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -775,6 +776,9 @@
     <Content Include="Views\Hafez\Index.cshtml" />
     <Content Include="Views\Dictionary\Index.cshtml" />
     <Content Include="Views\SocialNetwork\Backgammon.cshtml" />
+    <Content Include="Views\OnlineShop\PaymentInfo.cshtml" />
+    <Content Include="Views\Account\EditInfo.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201501080617569_init.resx">

@@ -1,69 +1,133 @@
 ﻿@model IEnumerable<PersianPortal.Models.Article>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "مقاله ها";
 }
+<title>مقاله ها | پورتال جامع پارسی زبانان</title>
 
-<h2>Index</h2>
+<div class="col-lg-8">
+    <h2>مقاله ها</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Author.UserName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Body)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tags)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PublishDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Magazine)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PDFURL)
-        </th>
-        <th></th>
-    </tr>
+    @if (ViewBag.CanViewNewsPanel)
+    {
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tags)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PublishDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Magazine)
+                </th>
+                <th></th>
+            </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Author.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Body)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tags)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PublishDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Magazine)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PDFURL)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tags)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PublishDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Magazine)
+                    </td>
+                    <td>
+                        @Html.ActionLink("ویرایش", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("جزییات", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("حذف", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
 
-</table>
+        </table>
+
+        <a class="col-lg-2 col-lg-offset-5 col-xs-12 btn btn-default" style="margin-top:3%;margin-bottom:3%" href="@Url.Action("Create", "Articles")">ایجاد مقاله جدید</a>
+    }
+    @foreach (var item in Model)
+    {
+        <div class="row news-box">
+            <div class=" col-lg-8 col-lg-offset-2" style="padding: 10px 30px 20px 30px !important">
+                <div class="news-heading">
+                    <h3>
+                        <a href="#">@item.Title</a>
+                        <span> : </span>
+                        <span class="news-date">
+                            <strong>@item.PublishDate.Day  /  @item.PublishDate.Month  /</strong>
+                            <strong>@item.PublishDate.Year</strong>
+                        </span>
+                    </h3>
+                </div>
+                <p style="font-family:'B Nazanin';text-align:center">
+                    @Html.Raw(item.Body)
+                    <strong style="float:left;margin:20px">@item.Author.FullName</strong>
+                </p>
+                <div class="news-read-more">
+                    <span>[ </span>
+                    <a href="@Url.Action("Details", "News", new { id = @item.Id })"> ادامه مقاله </a>
+                    <span> ]</span>
+                </div>
+                <div class="dashed-hr"></div>
+            </div>
+        </div>
+    }
+    <div class="row text-center col-lg-12">
+        <nav>
+            <ul class="pagination">
+                <li class="disabled"><a href="#"><span aria-hidden="true"></span><span class="sr-only"><span class="arrows">&laquo;</span>قبلی</span></a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">...</a></li>
+                <li><a href="#"><span aria-hidden="true"></span><span class="sr-only">بعدی<span class="arrows">&raquo;</span></span></a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<div class="col-lg-2">
+    <div class="row news-section">
+        <div class="ad-box">
+            <div class="well">
+                <h1 class="text-center">تبلیغات</h1>
+                <hr />
+                <div style="text-align: center">
+                    <img src="/images/c8c57293d052b777855b86cafb348a4b.gif" width="100%" alt="Ad 1" />
+                </div>
+            </div>
+        </div>
+        <div class="ad-box">
+            <div class="well">
+                <h1 class="text-center">تبلیغات</h1>
+                <hr />
+                <div style="text-align: center">
+                    <img src="/images/New_28142.gif" width="100%" alt="Ad 2" />
+                </div>
+            </div>
+        </div>
+        <div class="ad-box">
+            <div class="well">
+                <h1 class="text-center">تبلیغات</h1>
+                <hr />
+                <div style="text-align: center">
+                    <img src="/images/New_28529.gif" width="100%" alt="Ad 3" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

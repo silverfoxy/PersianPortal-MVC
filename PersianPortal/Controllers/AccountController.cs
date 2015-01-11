@@ -15,6 +15,7 @@ namespace PersianPortal.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        ApplicationDbContext db = new ApplicationDbContext();
         public AccountController()
             : this(new UserManager<User>(new UserStore<User>(new ApplicationDbContext())))
         {
@@ -26,6 +27,57 @@ namespace PersianPortal.Controllers
         }
 
         public UserManager<User> UserManager { get; private set; }
+
+        //
+        // GET: /Account/EditInfo
+        public ActionResult EditInfo()
+        {
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                return View(db.Users.Find(User.Identity.GetUserId()));
+            }
+        }
+
+        //
+        // POST: /Account/EditInfo
+        [HttpPost]
+        public ActionResult EditInfo(User user)
+        {
+            if (user.Id == User.Identity.GetUserId())
+            {
+                var dbUser = db.Users.Find(User.Identity.GetUserId());
+                dbUser.Name = user.Name;
+                dbUser.FamilyName = user.FamilyName;
+                dbUser.DateOfBirth = user.DateOfBirth;
+                dbUser.EmailAddress = user.EmailAddress;
+                db.Entry(dbUser).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("EditInfo");
+            }
+            else
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+        }
+
+        //
+        // GET: /Account/ResetPassword
+        [Authorize(Roles = "Administrator")]
+        public ActionResult ResetPassword()
+        {
+            ViewBag.Users = new SelectList(db.Users, "Id", "UserName");
+            return View();
+        }
+
+        //
+        // POST: /Account/ResetPassword
+        [HttpPost]
+        [Authorize(Roles = "Administrator")]
+        public ActionResult ResetPassword(User user, string Password)
+        {
+            UserManager<IdentityUser> userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
+            userManager.RemovePassword(user.UserName);
+            userManager.AddPassword(user.UserName, Password);
+            return RedirectToAction("ResetPassword");
+        }
 
         //
         // GET: /Account/Login

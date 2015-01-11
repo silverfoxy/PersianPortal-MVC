@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using PersianPortal.Models;
+using Microsoft.AspNet.Identity;
 
 namespace PersianPortal.Controllers
 {
@@ -17,6 +18,16 @@ namespace PersianPortal.Controllers
         // GET: Articles
         public ActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                var roles = db.Users.Find(User.Identity.GetUserId()).Roles.ToList();
+                if (roles.Select(r => r.Role.Name).Contains("Administrator") || roles.Select(r => r.Role.Name).Contains("PoemsAdmin"))
+                {
+                    ViewBag.CanViewNewsPanel = true;
+                }
+            }
+            else
+                ViewBag.CanViewNewsPanel = false;
             var article = db.Article.Include(a => a.Author);
             return View(article.ToList());
         }
@@ -50,17 +61,32 @@ namespace PersianPortal.Controllers
         [HttpPost]
         [Authorize(Roles = "Administrator,PoemsAdmin")]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Body,Tags,AuthorId,PublishDate,Magazine,Title,PDFURL")] Article article)
+        public ActionResult Create(Article article)
         {
-            if (ModelState.IsValid)
+            try
             {
+                article.AuthorId = User.Identity.GetUserId();
+                article.PublishDate = DateTime.Now;
+                var attachment = db.File.Where(f => f.URL.Contains(article.PDF.URL)).FirstOrDefault();
+                if (attachment != null)
+                {
+                    if (attachment.Extension != FileExtensions.pdf)
+                    {
+                        return View(article);
+                    }
+                    article.PDF = attachment;
+                }
+                else
+                    article.PDF = null;
                 db.Article.Add(article);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.AuthorId = new SelectList(db.Users, "Id", "UserName", article.AuthorId);
-            return View(article);
+            catch (Exception)
+            {
+                ViewBag.AuthorId = new SelectList(db.Users, "Id", "UserName", article.AuthorId);
+                return View(article);
+            }
         }
 
         // GET: Articles/Edit/5
@@ -71,7 +97,12 @@ namespace PersianPortal.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Article article = db.Article.Find(id);
+            Article article;
+            var roles = db.Users.Find(User.Identity.GetUserId()).Roles.ToList();
+            if (roles.Select(r => r.Role.Name).Contains("Administrator"))
+                article = db.Article.Find(id);
+            else
+                article = db.Article.Where(f => f.Id == id && f.AuthorId == User.Identity.GetUserId()).FirstOrDefault();
             if (article == null)
             {
                 return HttpNotFound();
@@ -86,13 +117,27 @@ namespace PersianPortal.Controllers
         [HttpPost]
         [Authorize(Roles = "Administrator,PoemsAdmin")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Body,Tags,AuthorId,PublishDate,Magazine,Title,PDFURL")] Article article)
+        public ActionResult Edit(Article article)
         {
-            if (ModelState.IsValid)
+            var roles = db.Users.Find(User.Identity.GetUserId()).Roles.ToList();
+            var dbArticle = db.Article.Find(article.Id);
+            if (roles.Select(r => r.Role.Name).Contains("Administrator") || dbArticle.AuthorId == User.Identity.GetUserId())
             {
-                db.Entry(article).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                //if (ModelState.IsValid)
+                try
+                {
+                    dbArticle.Body = article.Body;
+                    dbArticle.Tags = article.Tags;
+                    dbArticle.Magazine = article.Magazine;
+                    dbArticle.Title = article.Title;
+                    db.Entry(dbArticle).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    return View(db.Poem.Find(dbArticle.Id));
+                }
             }
             ViewBag.AuthorId = new SelectList(db.Users, "Id", "UserName", article.AuthorId);
             return View(article);
@@ -106,7 +151,12 @@ namespace PersianPortal.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Article article = db.Article.Find(id);
+            Article article;
+            var roles = db.Users.Find(User.Identity.GetUserId()).Roles.ToList();
+            if (roles.Select(r => r.Role.Name).Contains("Administrator"))
+                article = db.Article.Find(id);
+            else
+                article = db.Article.Where(f => f.Id == id && f.AuthorId == User.Identity.GetUserId()).FirstOrDefault();
             if (article == null)
             {
                 return HttpNotFound();
@@ -120,7 +170,12 @@ namespace PersianPortal.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Article article = db.Article.Find(id);
+            Article article;
+            var roles = db.Users.Find(User.Identity.GetUserId()).Roles.ToList();
+            if (roles.Select(r => r.Role.Name).Contains("Administrator"))
+                article = db.Article.Find(id);
+            else
+                article = db.Article.Where(f => f.Id == id && f.AuthorId == User.Identity.GetUserId()).FirstOrDefault();
             db.Article.Remove(article);
             db.SaveChanges();
             return RedirectToAction("Index");

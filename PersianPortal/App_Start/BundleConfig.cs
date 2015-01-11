@@ -27,9 +27,10 @@ namespace PersianPortal
                       "~/Scripts/News.js",
                       "~/Scripts/Poem.js",
                       "~/Scripts/respond.js",
-                     "~/Scripts/bootstrap-datepicker.min.js",
-                     "~/Scripts/bootstrap-datepicker.fa.min.js",
-                     "~/Scripts/persianDatepicker.js"));
+                      "~/Scripts/bootstrap-datepicker.min.js",
+                      "~/Scripts/bootstrap-datepicker.fa.min.js",
+                      "~/Scripts/persianDatepicker.js",
+                      "~/Scripts/Searchbox.js"));
 
             var bundle = new ScriptBundle("~/bundles/ckeditor").Include(
                 "~/Scripts/ckeditor/ckeditor.js",

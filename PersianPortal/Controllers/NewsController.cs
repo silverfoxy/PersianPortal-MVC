@@ -19,6 +19,16 @@ namespace PersianPortal.Controllers
         // GET: /News/
         public ActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                var roles = db.Users.Find(User.Identity.GetUserId()).Roles.ToList();
+                if (roles.Select(r => r.Role.Name).Contains("Administrator") || roles.Select(r => r.Role.Name).Contains("NewsAdmin"))
+                {
+                    ViewBag.CanViewNewsPanel = true;
+                }
+            }
+            else
+                ViewBag.CanViewNewsPanel = false;
             return View(db.News.ToList());
         }
 
@@ -52,6 +62,8 @@ namespace PersianPortal.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(NewsViewModel nvm)
         {
+            try
+            {
             News news = nvm.News;
             news.PublishDate = DateTime.Now;
             int ntid = int.Parse(nvm.Type);
@@ -69,7 +81,11 @@ namespace PersianPortal.Controllers
             db.News.Add(news);
             db.SaveChanges();
             return RedirectToAction("Index");
-            //return View(news);
+            }
+            catch (Exception)
+            {
+                return View(nvm);
+            }
         }
 
         // GET: /News/Edit/5
@@ -88,7 +104,7 @@ namespace PersianPortal.Controllers
             {
                 var userid = User.Identity.GetUserId();
                 news = db.News.Where(f => f.Id == id && f.AuthorId == userid).FirstOrDefault();
-            }
+           } 
             if (news == null)
             {
                 return HttpNotFound();

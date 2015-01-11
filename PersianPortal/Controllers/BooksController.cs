@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using PersianPortal.Models;
+using Microsoft.AspNet.Identity;
 
 namespace PersianPortal.Controllers
 {
@@ -17,6 +18,16 @@ namespace PersianPortal.Controllers
         // GET: Books
         public ActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                var roles = db.Users.Find(User.Identity.GetUserId()).Roles.ToList();
+                if (roles.Select(r => r.Role.Name).Contains("Administrator") || roles.Select(r => r.Role.Name).Contains("PoemsAdmin"))
+                {
+                    ViewBag.CanViewNewsPanel = true;
+                }
+            }
+            else
+                ViewBag.CanViewNewsPanel = false;
             var book = db.Book.Include(b => b.Author);
             return View(book.ToList());
         }
@@ -50,17 +61,32 @@ namespace PersianPortal.Controllers
         [HttpPost]
         [Authorize(Roles = "Administrator,PoemsAdmin")]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Body,Tags,AuthorId,PublishDate,Version,Name,Publisher,PDFURL")] Book book)
+        public ActionResult Create(Book book)
         {
-            if (ModelState.IsValid)
+            try
             {
+                book.AuthorId = User.Identity.GetUserId();
+                book.PublishDate = DateTime.Now;
+                var attachment = db.File.Where(f => f.URL.Contains(book.PDF.URL)).FirstOrDefault();
+                if (attachment != null)
+                {
+                    if (attachment.Extension != FileExtensions.pdf)
+                    {
+                        return View(book);
+                    }
+                    book.PDF = attachment;
+                }
+                else
+                    book.PDF = null;
                 db.Book.Add(book);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.AuthorId = new SelectList(db.Users, "Id", "UserName", book.AuthorId);
-            return View(book);
+            catch (Exception)
+            {
+                ViewBag.AuthorId = new SelectList(db.Users, "Id", "UserName", book.AuthorId);
+                return View(book);
+            }
         }
 
         // GET: Books/Edit/5
@@ -71,7 +97,12 @@ namespace PersianPortal.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Book book = db.Book.Find(id);
+            Book book;
+            var roles = db.Users.Find(User.Identity.GetUserId()).Roles.ToList();
+            if (roles.Select(r => r.Role.Name).Contains("Administrator"))
+                book = db.Book.Find(id);
+            else
+                book = db.Book.Where(f => f.Id == id && f.AuthorId == User.Identity.GetUserId()).FirstOrDefault();
             if (book == null)
             {
                 return HttpNotFound();
@@ -86,16 +117,31 @@ namespace PersianPortal.Controllers
         [HttpPost]
         [Authorize(Roles = "Administrator,PoemsAdmin")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Body,Tags,AuthorId,PublishDate,Version,Name,Publisher,PDFURL")] Book book)
+        public ActionResult Edit(Book book)
         {
-            if (ModelState.IsValid)
+            var roles = db.Users.Find(User.Identity.GetUserId()).Roles.ToList();
+            var dbBook = db.Book.Find(book.Id);
+            if (roles.Select(r => r.Role.Name).Contains("Administrator") || dbBook.AuthorId == User.Identity.GetUserId())
             {
-                db.Entry(book).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                //if (ModelState.IsValid)
+                try
+                {
+                    dbBook.Body = book.Body;
+                    dbBook.Tags = book.Tags;
+                    dbBook.Publisher = book.Publisher;
+                    dbBook.Version = book.Version;
+                    dbBook.Name = book.Name;
+                    db.Entry(dbBook).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    return View(db.Poem.Find(dbBook.Id));
+                }
             }
-            ViewBag.AuthorId = new SelectList(db.Users, "Id", "UserName", book.AuthorId);
-            return View(book);
+            ViewBag.AuthorId = new SelectList(db.Users, "Id", "UserName", dbBook.AuthorId);
+            return View(dbBook);
         }
 
         // GET: Books/Delete/5
@@ -106,7 +152,12 @@ namespace PersianPortal.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Book book = db.Book.Find(id);
+            Book book;
+            var roles = db.Users.Find(User.Identity.GetUserId()).Roles.ToList();
+            if (roles.Select(r => r.Role.Name).Contains("Administrator"))
+                book = db.Book.Find(id);
+            else
+                book = db.Book.Where(f => f.Id == id && f.AuthorId == User.Identity.GetUserId()).FirstOrDefault();
             if (book == null)
             {
                 return HttpNotFound();
@@ -120,7 +171,12 @@ namespace PersianPortal.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Book book = db.Book.Find(id);
+            Book book;
+            var roles = db.Users.Find(User.Identity.GetUserId()).Roles.ToList();
+            if (roles.Select(r => r.Role.Name).Contains("Administrator"))
+                book = db.Book.Find(id);
+            else
+                book = db.Book.Where(f => f.Id == id && f.AuthorId == User.Identity.GetUserId()).FirstOrDefault();
             db.Book.Remove(book);
             db.SaveChanges();
             return RedirectToAction("Index");

@@ -8,7 +8,6 @@
     @if (Model.Articles.Count() > 0)
     {
         <h3>مقاله ها</h3>
-        <hr />
         <table class="table">
             <tr>
                 <th>
@@ -24,7 +23,7 @@
 
             @foreach (var item in Model.Articles)
             {
-                <tr>
+                <tr onclick="window.open('/Articles/Details/@item.Id', '_blank')" class="search-tr">
                     <td>
                         @Html.DisplayFor(modelItem => item.Title)
                     </td>
@@ -43,7 +42,6 @@
     @if (Model.Books.Count() > 0)
     {
         <h3>کتاب ها</h3>
-        <hr />
         <table class="table">
             <tr>
                 <th>
@@ -62,7 +60,7 @@
 
             @foreach (var item in Model.Books)
             {
-                <tr>
+                <tr onclick="window.open('/Book/Details/@item.Id', '_blank')" class="search-tr">
                     <td>
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
@@ -87,31 +85,24 @@
     @if (Model.Contents.Count() > 0)
     {
         <h3>متون</h3>
-        <hr />
         <table class="table">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Contents.First().)
+                    @Html.DisplayNameFor(model => model.Contents.First().Title)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Articles.First().Magazine)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Articles.First().PublishDate)
+                    @Html.DisplayNameFor(model => model.Contents.First().Tags)
                 </th>
             </tr>
 
             @foreach (var item in Model.Articles)
             {
-                <tr>
+                <tr onclick="window.open('/Contents/Details/@item.Id', '_blank')" class="search-tr">
                     <td>
                         @Html.DisplayFor(modelItem => item.Title)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Magazine)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PublishDate)
+                        @Html.DisplayFor(modelItem => item.Tags)
                     </td>
                 </tr>
             }
@@ -119,34 +110,33 @@
         </table>
     }
 
-    @if (Model.Articles.Count() > 0)
+    @if (Model.News.Count() > 0)
     {
-        <h3>مقاله ها</h3>
-        <hr />
+        <h3>خبر ها</h3>
         <table class="table">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Articles.First().Title)
+                    @Html.DisplayNameFor(model => model.News.First().Title)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Articles.First().Magazine)
+                    @Html.DisplayNameFor(model => model.News.First().Type)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Articles.First().PublishDate)
+                    @Html.DisplayNameFor(model => model.News.First().Tags)
                 </th>
             </tr>
 
-            @foreach (var item in Model.Articles)
+            @foreach (var item in Model.News)
             {
-                <tr>
+                <tr onclick="window.open('/News/Details/@item.Id', '_blank')" class="search-tr">
                     <td>
                         @Html.DisplayFor(modelItem => item.Title)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Magazine)
+                        @Html.DisplayFor(modelItem => item.Type.Type)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.PublishDate)
+                        @Html.DisplayFor(modelItem => item.Tags)
                     </td>
                 </tr>
             }
@@ -154,34 +144,39 @@
         </table>
     }
 
-    @if (Model.Articles.Count() > 0)
+    @if (Model.Poems.Count() > 0)
     {
-        <h3>مقاله ها</h3>
-        <hr />
+        <h3>اشعار</h3>
         <table class="table">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Articles.First().Title)
+                    @Html.DisplayNameFor(model => model.Poems.First().Name)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Articles.First().Magazine)
+                    @Html.DisplayNameFor(model => model.Poems.First().BookName)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Articles.First().PublishDate)
+                    @Html.DisplayNameFor(model => model.Poems.First().Poet)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Poems.First().PoemType)
                 </th>
             </tr>
 
-            @foreach (var item in Model.Articles)
+            @foreach (var item in Model.Poems)
             {
-                <tr>
+                <tr onclick="window.open('/Poems/Details/@item.Id', '_blank')" class="search-tr">
                     <td>
-                        @Html.DisplayFor(modelItem => item.Title)
+                        @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Magazine)
+                        @Html.DisplayFor(modelItem => item.BookName)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.PublishDate)
+                        @Html.DisplayFor(modelItem => item.Poet)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PoemType.Type)
                     </td>
                 </tr>
             }
