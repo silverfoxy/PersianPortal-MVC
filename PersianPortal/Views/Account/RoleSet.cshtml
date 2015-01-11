@@ -16,14 +16,14 @@
         <div class="form-group">
             @Html.Label("کاربر", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.user.Id, (SelectList)ViewBag.user)
+                @Html.DropDownListFor(model => model.user.UserName, (SelectList)ViewBag.user)
             </div>
         </div>
         
         <div class="form-group">
             @Html.Label("دسترسی", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.role.Id, (SelectList)ViewBag.role)
+                @Html.DropDownListFor(model => model.role.Name, (SelectList)ViewBag.role)
             </div>
         </div>
 
