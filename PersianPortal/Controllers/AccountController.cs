@@ -112,7 +112,9 @@ namespace PersianPortal.Controllers
             }
             catch (Exception ex)
             {
-                return View();
+                ViewBag.user = new SelectList(db.Users, "Id", "UserName");
+                ViewBag.role = new SelectList(db.Roles, "Id", "title");
+                return View(new UserRoleViewModel());
             }
         }
 
