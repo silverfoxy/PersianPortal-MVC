@@ -85,7 +85,7 @@ namespace PersianPortal.Controllers
         public ActionResult RoleSet()
         {
             ViewBag.Users = new SelectList(db.Users, "Id", "UserName");
-            ViewBag.Roles = new SelectList(db.Roles,"title","Role");
+            ViewBag.Roles = new SelectList(db.Roles,"Id","title");
             return View();
         }
 
@@ -95,6 +95,8 @@ namespace PersianPortal.Controllers
         [Authorize(Roles = "Administrator")]
         public ActionResult RoleSet(User user, Role role)
         {
+            UserManager<IdentityUser> userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
+            userManager.AddToRole(user.Id, role.Id);
             return RedirectToAction("RoleSet");
         }
 
