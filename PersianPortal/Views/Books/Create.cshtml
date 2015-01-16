@@ -4,15 +4,15 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>ایجاد کتاب جدید</h2>
 
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>Book</h4>
+    <div class="form-horizontal col-lg-10">
+        <h4>کتاب</h4>
         <hr />
         @Html.ValidationSummary(true)
         <div class="form-group">
@@ -72,10 +72,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.PDFURL, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.PDF, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PDFURL)
-                @Html.ValidationMessageFor(model => model.PDFURL)
+                @Html.EditorFor(model => model.PDF)
+                @Html.ValidationMessageFor(model => model.PDF)
             </div>
         </div>
 
@@ -87,10 +87,17 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<div class="col-lg-2 col-lg-offset-10" style="margin-top:40px;margin-bottom:40px">
+    @Html.ActionLink("<< بازگشت به لیست کتاب ها >>", "Index")
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/ckeditor")
+
+    <script>
+        $(function () {
+            $('#book-body').ckeditor();
+        });
+    </script>
 }
